@@ -1,9 +1,10 @@
 import React from 'react'
+import BestHike from './BestHike'
 
-function Hikes() {
+function Hikes({bestHike}) {
   return (
     <div>
-      This is my Hikes component
+      <BestHike bestHike={bestHike}/>
     </div>
   )
 }

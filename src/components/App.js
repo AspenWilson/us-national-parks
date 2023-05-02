@@ -50,7 +50,9 @@ console.log('best hike is', bestHike.hike )
       <NavBar />
       <Switch>
         <Route exact path="/hikes">
-          <Hikes />
+          <Hikes 
+            bestHike={bestHike}
+          />
         </Route>
         <Route exact path="/bio-div">
           <BioDiv />
