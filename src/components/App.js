@@ -14,7 +14,7 @@ function App() {
   const [selectedParkId, setSelectedParkId] = useState(null)
   const [bestHikes, setBestHikes] = useState([])
   const [bestHike, setBestHike] = useState([])
-  const [bioDiv, setBioDv] = useState([])
+  const [bioDiv, setBioDiv] = useState([])
   const [endangered, setEndangered] = useState ([])
   const [allHikes, setAllHikes] = useState([])
   const [selectedHikes, setSelectedHikes] = useState ()
@@ -41,8 +41,28 @@ useEffect(() => {
   })
 },[selectedParkId])
 
+useEffect(() => {
+  fetch('http://localhost:3004/allHikes')
+  .then((resp) => resp.json())
+  .then((hikes) => {
+    const parkAllHikes = hikes.filter((hike) => hike.parkId === selectedPark.id)
+    setAllHikes(parkAllHikes)
+  })
+},[selectedParkId])
+
+useEffect(() => {
+  fetch('http://localhost:3004/bioDiv')
+  .then((resp) => resp.json())
+  .then((animals) => {
+    const commonAnimals = animals.filter((animal) => animal.parkId === selectedPark.id)
+    setBioDiv(commonAnimals)
+  })
+}, [selectedParkId])
+
 
 console.log('best hike is', bestHike.hike )
+console.log(allHikes)
+console.log(bioDiv)
 
 
   return (
