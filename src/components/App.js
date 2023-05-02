@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import  '../App.css';
+import NavBar from './NavBar'
+import Hikes from './Hikes'
+import BioDiv from './BioDiv'
+import ParksList from './ParksList'
+import React, {useEffect, useState} from 'react'
+
 
 function App() {
+
+  const [parks, setParks] = useState([])
+
+useEffect(() => {
+  fetch('http://localhost:3004/parks')
+  .then((resp) => resp.json())
+  .then((parks) => setParks(parks))
+},[])
+
+console.log(parks)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <Hikes />
+      <BioDiv />
+      <ParksList parks={parks}/>
     </div>
   );
 }
