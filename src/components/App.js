@@ -12,7 +12,6 @@ function App() {
 
   const [parks, setParks] = useState([])
   const [selectedParkId, setSelectedParkId] = useState(null)
-  const [bestHikes, setBestHikes] = useState([])
   const [bestHike, setBestHike] = useState([])
   const [bioDiv, setBioDiv] = useState([])
   const [endangered, setEndangered] = useState ([])
@@ -59,10 +58,17 @@ useEffect(() => {
   })
 }, [selectedParkId])
 
+useEffect(() => {
+  fetch('http://localhost:3004/endangered')
+  .then((resp) => resp.json())
+  .then((animals) => {
+    const endangeredAnimals = animals.filter((animal) => animal.parkId === selectedPark.id)
+    setEndangered(endangeredAnimals)
+  })
+},[selectedParkId])
 
-console.log('best hike is', bestHike.hike )
-console.log(allHikes)
-console.log(bioDiv)
+
+console.log('endangered animals', endangered)
 
 
   return (
