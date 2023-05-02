@@ -10,7 +10,7 @@ function ParksList({parks, onClickPark}) {
 
   return (
     <div>
-      <Card.Group itemsPerRow={6}>{allParks}</Card.Group>
+      <Card.Group itemsPerRow={5}>{allParks}</Card.Group>
     </div>
   )
 }

@@ -13,11 +13,10 @@ function Park({park, onClickPark}) {
         <Card 
             raised 
             onClick= {handleClick}>
-            <Image src={park.imgUrl} alt={park.title} />
             <Card.Content>
                 <Card.Header>{park.title}</Card.Header>
             </Card.Content>
-            
+            <Image src={park.imgUrl} alt={park.title} size='medium'/>
         </Card> 
 
     </div>

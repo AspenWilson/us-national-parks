@@ -4,6 +4,7 @@ import Hikes from './Hikes'
 import BioDiv from './BioDiv'
 import Home from './Home';
 import MyTrips from './MyTrips';
+import TripContainer from './TripContainer';
 import { Route, Switch } from 'react-router-dom'
 import React, {useEffect, useState} from 'react'
 
@@ -19,6 +20,8 @@ function App() {
   const [selectedHikes, setSelectedHikes] = useState ()
   const [selectedAnimals, setSelectedAnimals] = useState([])
 
+
+//Parks Fetch and selectedPark
 useEffect(() => {
   fetch('http://localhost:3004/parks')
   .then((resp) => resp.json())
@@ -30,6 +33,21 @@ function handleSelectedPark(park) {
 }
 const selectedPark = parks.find((park) => park.id === selectedParkId)
 console.log('i selected', selectedPark)
+
+//States array and sort
+const allStates = Array.from(new Set(parks.map((park) => park.state)))
+const sortedStates = allStates.sort((a,b) => {
+  if (a < b){
+    return -1
+  }
+  if (a > b) {
+    return 1
+  }
+  return 0
+})
+console.log(sortedStates)
+
+//Fetches
 
 useEffect(() => {
   fetch('http://localhost:3004/hikes')
@@ -74,6 +92,8 @@ console.log('endangered animals', endangered)
   return (
     <div>
       <NavBar />
+      <TripContainer />
+      <br />
       <Switch>
         <Route exact path="/hikes">
           <Hikes 
