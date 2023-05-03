@@ -95,13 +95,15 @@ const parksToDisplay = stateFilter.length > 0 ? parks.filter((park) => {
 }) : parks
 
 //Handle Selected Hikes and Animals
+
 function handleSelectedHikes(hike) {
-  if(!selectedHikes.includes(hike)) {
   setSelectedHikes([...selectedHikes, hike])
-  } else {
-    setSelectedHikes(selectedHikes.filter((hike) => hike.name !== hike.name))
-  }
-} 
+}
+
+function handleDeselectHike(removedHike) {
+  setSelectedHikes(selectedHikes.filter((hike) => hike !== removedHike))
+}
+
 console.log(selectedHikes)
 
   return (
@@ -119,6 +121,7 @@ console.log(selectedHikes)
         bestHike={bestHike} 
         hikes={allHikes} 
         onClickHike={handleSelectedHikes}
+        onUnclickHike={handleDeselectHike}
         />
       </Grid.Column>
         </Route>
