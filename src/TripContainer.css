@@ -2,5 +2,6 @@
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 1; /* add z-index so that the component stays on top of other elements */
+    padding: 15px;
+    z-index: 1; 
   }
