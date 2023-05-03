@@ -20,6 +20,7 @@ function App() {
   const [allHikes, setAllHikes] = useState([])
   const [selectedHikes, setSelectedHikes] = useState ()
   const [selectedAnimals, setSelectedAnimals] = useState([])
+  const [stateFilter, setStateFilter] = useState([])
 
 
 //Parks Fetch and selectedPark
@@ -33,7 +34,6 @@ function handleSelectedPark(park) {
   setSelectedParkId(park.id)
 }
 const selectedPark = parks.find((park) => park.id === selectedParkId)
-console.log('i selected', selectedPark)
 
 //States array and sort
 const allStates = Array.from(new Set(parks.map((park) => park.state)))
@@ -46,7 +46,6 @@ const sortedStates = allStates.sort((a,b) => {
   }
   return 0
 })
-console.log(sortedStates)
 
 //Fetches
 
@@ -86,8 +85,15 @@ useEffect(() => {
   })
 },[selectedParkId])
 
-
-console.log('endangered animals', endangered)
+//Filters
+function handleFilter(e, {value}) {
+  value === '' ? setStateFilter('') : setStateFilter(value)
+  console.log(value)
+}
+const parksToDisplay = stateFilter.length > 0 ? parks.filter((park) => {
+  return stateFilter.some((state) => park.state.includes(state))
+}) : parks
+console.log(parksToDisplay)
 
 
   return (
@@ -117,9 +123,10 @@ console.log('endangered animals', endangered)
         <Route exact path="/">
         <Grid.Column width = {11}>
           <Home 
-            parks={parks} 
+            parks={parksToDisplay} 
             onClickPark={handleSelectedPark}
             states={sortedStates}
+            handleFilter={handleFilter}
           />  
           </Grid.Column>
         </Route>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Dropdown} from 'semantic-ui-react'
 
-function Filter({states}) {
+function Filter({states,handleFilter}) {
 
 const options=states.map((state) => ({
     key: state,
@@ -9,13 +9,11 @@ const options=states.map((state) => ({
     value: state
 }))
 
-function handleChange (e, {value}) {
-    console.log(value)
-}
+
 
   return (
     <div>
-      <Dropdown placeholder='Select state or states to filter by' fluid multiple selection options={options} onChange={handleChange}/>
+      <Dropdown placeholder='Select state or states to filter by' fluid multiple selection options={options} onChange={handleFilter}/>
     </div>
   )
 }

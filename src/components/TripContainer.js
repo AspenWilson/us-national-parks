@@ -5,7 +5,6 @@ import '../TripContainer.css'
 
 function TripContainer({selectedPark}) {
 
-    console.log(selectedPark)
   return (
     <div className='sticky-wrapper'>
     {selectedPark ? (
