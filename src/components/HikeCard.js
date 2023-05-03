@@ -19,10 +19,11 @@ function HikeCard({hike, onClickHike, onUnclickHike}) {
     <div className = 'hike-card'>
         <Card raised>
             <Card.Header style= {{padding:'5px'}} as='h2'>{hike.name}</Card.Header>
+            <Card.Description style= {{padding:'5px'}}>Trail Length: {hike.length}</Card.Description>
             <Card.Description style= {{padding:'5px'}}>Trail Class: {hike.class}</Card.Description>
             <Card.Description style= {{padding:'5px'}}>Trail Surface: {hike.surface}</Card.Description>
+            <Card.Description style= {{padding:'5px'}}>Trail Type: {hike.type}</Card.Description>
             <Card.Description style= {{padding:'5px'}}>Trail Use: {hike.use}</Card.Description>
-            <Card.Description style= {{padding:'5px'}}>Trail Length: {hike.length}</Card.Description>
             <Card.Description style= {{padding:'5px'}}>Seasonal Use? {hike.seasonal}</Card.Description>
             {hike.seasonal == "Yes" ? 
             <Card.Description style= {{padding:'5px'}}>Seasonal Use Details: {hike.seasonalDetails}</Card.Description> : null
