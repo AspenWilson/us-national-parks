@@ -7,9 +7,6 @@ function Park({park, onClickPark}) {
         onClickPark(park)
     }
 
-
-
-
   return (
     <div className='park-card'>
         <Card onClick= {handleClick}>

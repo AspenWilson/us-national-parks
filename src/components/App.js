@@ -119,7 +119,8 @@ console.log('endangered animals', endangered)
           <Home 
             parks={parks} 
             onClickPark={handleSelectedPark}
-          />
+            states={sortedStates}
+          />  
           </Grid.Column>
         </Route>
       </Switch>
