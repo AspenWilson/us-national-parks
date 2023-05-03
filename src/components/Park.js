@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card,Image } from 'semantic-ui-react'
-import '../Styles.css'
 
 function Park({park, onClickPark}) {
 
@@ -8,17 +7,17 @@ function Park({park, onClickPark}) {
         onClickPark(park)
     }
 
+    const extra = `Establisted: {park.est}`
   return (
     <div>
         <Card 
-            className='parksCard'
-            raised 
-            onClick= {handleClick}>
-            <Card.Content>
-                <Card.Header>{park.title}</Card.Header>
-            </Card.Content>
-            <Image src={park.imgUrl} alt={park.title} size='medium'/>
-        </Card> 
+            onClick= {handleClick}
+            header= {park.title}
+            image = {park.imgUrl}
+            meta= {park.state}
+            description= {park.description}
+            extra={extra}
+        />
 
     </div>
   )

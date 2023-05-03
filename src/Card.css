@@ -1,0 +1,7 @@
+.card-group-wrapper {
+    display:flex
+}
+
+.ui.card {
+    flex: 1
+}
