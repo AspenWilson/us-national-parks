@@ -19,3 +19,10 @@
     display: flex;
     padding-left: 2px;
 }
+
+.hike-card {
+    margin: 2px;
+    padding:2px;
+    display: flex;
+    padding-left: 2px;
+}

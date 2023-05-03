@@ -18,7 +18,7 @@ function App() {
   const [bioDiv, setBioDiv] = useState([])
   const [endangered, setEndangered] = useState ([])
   const [allHikes, setAllHikes] = useState([])
-  const [selectedHikes, setSelectedHikes] = useState ()
+  const [selectedHikes, setSelectedHikes] = useState ([])
   const [selectedAnimals, setSelectedAnimals] = useState([])
   const [stateFilter, setStateFilter] = useState([])
 
@@ -88,13 +88,21 @@ useEffect(() => {
 //Filters
 function handleFilter(e, {value}) {
   value === '' ? setStateFilter('') : setStateFilter(value)
-  console.log(value)
 }
+
 const parksToDisplay = stateFilter.length > 0 ? parks.filter((park) => {
   return stateFilter.some((state) => park.state.includes(state))
 }) : parks
-console.log(parksToDisplay)
 
+//Handle Selected Hikes and Animals
+function handleSelectedHikes(hike) {
+  if(!selectedHikes.includes(hike)) {
+  setSelectedHikes([...selectedHikes, hike])
+  } else {
+    setSelectedHikes(selectedHikes.filter((hike) => hike.name !== hike.name))
+  }
+} 
+console.log(selectedHikes)
 
   return (
     <div>
@@ -107,7 +115,11 @@ console.log(parksToDisplay)
       <Switch>
         <Route exact path="/hikes">
         <Grid.Column width = {11}>
-      <Hikes bestHike={bestHike} />
+      <Hikes 
+        bestHike={bestHike} 
+        hikes={allHikes} 
+        onClickHike={handleSelectedHikes}
+        />
       </Grid.Column>
         </Route>
         <Route exact path="/bio-div">
