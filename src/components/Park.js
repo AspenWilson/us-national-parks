@@ -11,6 +11,7 @@ function Park({park, onClickPark}) {
   return (
     <div>
         <Card 
+            className='parksCard'
             raised 
             onClick= {handleClick}>
             <Card.Content>

@@ -1,5 +1,15 @@
-.ui.card.park.raised {
-    width: 75px; 
-    height: 75px;
-    overflow: hidden
+#parksCard {
+    width: 100px; 
+    height: 100%;
+    overflow: hidden;
+} 
+
+#left-column {
+    float: left;
+    width: 25%
+}
+
+#right-column {
+    float: right;
+    width: 75%
 }

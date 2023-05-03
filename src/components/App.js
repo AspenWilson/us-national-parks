@@ -6,6 +6,7 @@ import Home from './Home';
 import MyTrips from './MyTrips';
 import TripContainer from './TripContainer';
 import { Route, Switch } from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
 import React, {useEffect, useState} from 'react'
 
 
@@ -92,27 +93,38 @@ console.log('endangered animals', endangered)
   return (
     <div>
       <NavBar />
-      <TripContainer />
+      <Grid columns={2}>
+        <Grid.Column width = {5}>
+      <TripContainer selectedPark={selectedPark}/>
+      </Grid.Column>
       <br />
       <Switch>
         <Route exact path="/hikes">
-          <Hikes 
-            bestHike={bestHike}
-          />
+        <Grid.Column width = {11}>
+      <Hikes bestHike={bestHike} />
+      </Grid.Column>
         </Route>
         <Route exact path="/bio-div">
+        <Grid.Column width = {11}>
           <BioDiv />
+          </Grid.Column>
         </Route>
         <Route exact path="/my-trips">
+        <Grid.Column width = {11}>
           <MyTrips />
+          </Grid.Column>
         </Route>
         <Route exact path="/">
+        <Grid.Column width = {11}>
           <Home 
             parks={parks} 
             onClickPark={handleSelectedPark}
           />
+          </Grid.Column>
         </Route>
       </Switch>
+      </Grid>
+
 
 
     </div>

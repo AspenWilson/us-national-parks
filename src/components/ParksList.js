@@ -1,6 +1,7 @@
 import React from 'react'
 import Park from './Park'
 import {Card} from 'semantic-ui-react'
+import '../Styles.css'
 
 function ParksList({parks, onClickPark}) {
 
@@ -10,7 +11,7 @@ function ParksList({parks, onClickPark}) {
 
   return (
     <div>
-      <Card.Group itemsPerRow={5}>{allParks}</Card.Group>
+      <Card.Group className="right-column" itemsPerRow={5}>{allParks}</Card.Group>
     </div>
   )
 }

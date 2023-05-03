@@ -5,25 +5,25 @@ function NavBar() {
   return (
     <div
     style={{
-        borderBottom: "2px solid black",
-        paddingBottom: "10px",
-        marginBottom: "12px",
+        borderBottom: "4px solid black",
+        paddingBottom: "20px",
+        marginBottom: "20px",
       }}
       >
       <NavLink 
-        style={{ marginRight: "10px" }} 
+        style={{ marginRight: "20px" }} 
         to="/"
         exact
       >
         Home
       </NavLink>
-      <NavLink style={{ marginRight: "10px" }}  to="/hikes">
+      <NavLink style={{ marginRight: "20px" }}  to="/hikes">
         Hikes
         </NavLink>
-        <NavLink style={{ marginRight: "10px" }}  to="/bio-div">
+        <NavLink style={{ marginRight: "20px" }}  to="/bio-div">
         Bio-Diversity
         </NavLink>
-        <NavLink style={{ marginRight: "10px" }}  to="/my-trips">
+        <NavLink style={{ marginRight: "20px" }}  to="/my-trips">
         My Trips
         </NavLink>
     </div>

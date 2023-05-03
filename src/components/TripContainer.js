@@ -1,19 +1,19 @@
 import React from 'react'
-import {
-    Grid,
-    Header,
-    Image,
-    Rail,
-    Ref,
-    Segment,
-    Sticky,
-  } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
+  import '../Styles.css'
 
-function TripContainer() {
+function TripContainer({selectedPark}) {
+
+    console.log(selectedPark)
   return (
-    <div>
-      This is my trip container
-    </div>
+    <Card
+        header={selectedPark.title}
+        image={selectedPark.imgUrl}
+        meta='This is the meta spot'
+        description='This is the description spot'
+    >
+
+    </Card>
   )
 }
 export default  TripContainer
