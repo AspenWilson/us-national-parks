@@ -28,3 +28,11 @@
     display: flex;
     padding-left: 2px;
 }
+
+.animal-card {
+    margin: 2px;
+    padding:2px;
+    display: flex;
+    padding-left: 2px;
+    max-height: min-content;
+}

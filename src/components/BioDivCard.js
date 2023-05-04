@@ -16,10 +16,10 @@ function BioDivCard({animal, onClickAnimal, onUnclickAnimal}) {
     }
 
   return (
-    <div className = 'hike-card'>
+    <div className = 'animal-card'>
         <Card raised>
             <Card.Content>
-                <Image size='medium' src={animal.imgUrl} />
+                <Image size='small' src={animal.imgUrl} alt={animal.name}/>
             </Card.Content>
             <Card.Header style= {{padding:'5px'}} as='h2'>{animal.commonName}</Card.Header>
             <Card.Description style= {{padding:'5px'}}>Category: {animal.category} </Card.Description>
