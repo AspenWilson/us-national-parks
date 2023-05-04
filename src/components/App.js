@@ -22,6 +22,7 @@ function App() {
   const [selectedAnimals, setSelectedAnimals] = useState([])
   const [stateFilter, setStateFilter] = useState([])
   const [hikesFilter, setHikesFilter] = useState([])
+  const [animalsFilter, setAnimalsFilter] = useState([])
 
 
 //Parks Fetch and selectedPark
@@ -71,7 +72,6 @@ useEffect(() => {
 
 const allLengths = Array.from(new Set(allHikes.map((hike) => (hike.distance))))
 const sortedLengths = allLengths.sort((a,b) => a - b)
-console.log(sortedLengths)
 
 useEffect(() => {
   fetch('http://localhost:3004/bioDiv')
@@ -81,6 +81,17 @@ useEffect(() => {
     setBioDiv(commonAnimals)
   })
 }, [selectedParkId])
+
+const allCategorys = Array.from(new Set(bioDiv.map((animal) => animal.category)))
+const sortedCategorys = allCategorys.sort((a,b) => {
+  if (a < b) {
+    return -1
+  }
+  if (a> b) {
+    return 1
+  }
+  return 0
+})
 
 useEffect(() => {
   fetch('http://localhost:3004/endangered')
@@ -108,6 +119,14 @@ const hikesToDisplay = hikesFilter.length > 0 ? allHikes.filter((hike) => {
   return hikesFilter.some((distance) => hike.distance.includes(distance))
 }) : allHikes
 
+function handleAnimalsFilter (e, {value}) {
+  value === '' ? setAnimalsFilter('') : setAnimalsFilter(value)
+}
+
+const commonBioDivtoDisplay = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
+  return animalsFilter.some((category) => animal.category.includes(category))
+}) : bioDiv
+
 //Handle Selected Hikes and Animals
 
 function handleSelectedHikes(hike) {
@@ -118,15 +137,16 @@ function handleDeselectHike(removedHike) {
   setSelectedHikes(selectedHikes.filter((hike) => hike !== removedHike))
 }
 
-console.log(selectedHikes)
-
   return (
     <div>
       
       <NavBar />
       <Grid columns={2}>
         <Grid.Column width = {5}>
-      <TripContainer selectedPark={selectedPark} selectedHikes={selectedHikes}/>
+      <TripContainer 
+        selectedPark={selectedPark} 
+        selectedHikes={selectedHikes} 
+        selectedAnimals={selectedAnimals}/>
       </Grid.Column>
       <br />
       <Switch>
@@ -146,7 +166,13 @@ console.log(selectedHikes)
         </Route>
         <Route exact path="/bio-div">
         <Grid.Column width = {11}>
-          <BioDiv />
+          <BioDiv 
+            selectedPark={selectedPark}
+            commonAnimals={commonBioDivtoDisplay}
+            endangered={endangered}
+            sortedCategorys={sortedCategorys}
+            handleFilter={handleAnimalsFilter}
+            />
           </Grid.Column>
         </Route>
         <Route exact path="/my-trips">

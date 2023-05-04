@@ -1,12 +1,12 @@
 import React from 'react'
 import {Dropdown} from 'semantic-ui-react'
 
-function BioDivFilter({states,handleFilter}) {
+function BioDivFilter({sortedCategorys,handleFilter}) {
 
-const options=states.map((state) => ({
-    key: state,
-    text: state,
-    value: state
+const options=sortedCategorys.map((category) => ({
+    key: category,
+    text: category,
+    value: category
 }))
 
 

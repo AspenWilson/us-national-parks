@@ -3,11 +3,17 @@ import { Card, Image } from 'semantic-ui-react'
 import '../TripContainer.css'
 
 
-function TripContainer({selectedPark, selectedHikes}) {
+function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
 
     const hikeNames= selectedHikes.length > 0 ? selectedHikes.map((hike) => {
-        <li>{hike.name}</li>
-    }) : 'Select hikes'
+      return  <li>{hike.name}</li>
+    }) : 'Select hikes to add them to your National Park trip'
+
+    const bioDivNames = selectedAnimals.length > 0 ? selectedAnimals.map((animal) => {
+        return <li>{animal.commonName}</li>
+    }) : `Selected animals you'd like to remind yourself to lookout for`
+
+console.log(selectedHikes)
 
   return (
     <div className='sticky-wrapper'>
@@ -21,7 +27,11 @@ function TripContainer({selectedPark, selectedHikes}) {
             </Card.Description>
             <Card.Meta style= {{padding:'5px'}} as='h5'>
                 Selected Hike(s):
-                {hikeNames}
+                <ul>{hikeNames}</ul>
+            </Card.Meta>
+            <Card.Meta style= {{padding:'5px'}} as='h5'>
+                Bio-Diversity Watchlist:
+                <ul>{bioDivNames}</ul>
             </Card.Meta>
         </Card>
   ) : (
