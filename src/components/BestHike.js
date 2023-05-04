@@ -26,7 +26,7 @@ function BestHike({bestHike, onClickHike, onUnclickHike}) {
             {/* <Card.Meta style= {{padding:'5px'}}>{park.state}</Card.Meta> */}
             <Card.Description style= {{padding:'5px'}}>{bestHike.summary}</Card.Description>
             <Card.Description style= {{padding:'5px'}}>
-            {'Length: ' + bestHike.length + ' miles'} <br />
+            {'Length: ' + bestHike.distance + ' miles'} <br />
             </Card.Description>
             <Card.Content extra>
                 {isSelected ? <Button basic color='red' onClick={handleUnClick}>Remove from Trip</Button> : <Button basic color='green' onClick={handleClick}>Add to Trip</Button>}

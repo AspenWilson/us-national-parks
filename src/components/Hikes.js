@@ -2,8 +2,9 @@ import React from 'react'
 import BestHike from './BestHike'
 import HikeCard from './HikeCard'
 import { Card } from 'semantic-ui-react'
+import HikesFilter from './HikesFilter'
 
-function Hikes({bestHike, hikes, onClickHike, onUnclickHike}) {
+function Hikes({bestHike, hikes, onClickHike, onUnclickHike, selectedPark, sortedLengths, handleFilter}) {
     
 
 const sortedHikes=hikes.sort((a,b) => {
@@ -21,10 +22,12 @@ const allHikes = sortedHikes.map((hike) => {
 })
   return (
     <div>
-    {hikes.length > 0 ? (
+    {selectedPark ? (
         <>
         <h2>Select the hikes you want to go on during your park visit!</h2>
       <BestHike bestHike={bestHike} onClickHike={onClickHike} onUnclickHike={onUnclickHike}/>
+      <br />
+      <HikesFilter sortedLengths={sortedLengths} handleFilter={handleFilter}/>
       <br />
       <Card.Group className='card-group-wrapper'>{allHikes}</Card.Group>
       </>

@@ -13,10 +13,10 @@ function Park({park, onClickPark}) {
         <Card.Content>
             <Image size='medium' src={park.imgUrl} />
             </Card.Content>
-            <Card.Header style= {{padding:'5px'}} as='h2'>{park.title}</Card.Header>
-            <Card.Meta style= {{padding:'5px'}}>{park.state}</Card.Meta>
-            <Card.Description style= {{padding:'5px'}}>{park.description}</Card.Description>
-            <Card.Content extra>
+            <Card.Header style= {{padding:'5px'}} as='h3'>{park.title}</Card.Header>
+            <Card.Meta style= {{padding:'5px'}} as='h5'>{park.state}</Card.Meta>
+            <Card.Description style= {{padding:'5px'}} as='p'>{park.description}</Card.Description>
+            <Card.Content extra as='small' >
             {'Established: ' + park.est} <br />
             {'Size: ' + park.acres + ' acres'} <br />
             {'Yearly visitors: ' + park.visitors}

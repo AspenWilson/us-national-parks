@@ -1,7 +1,15 @@
 .sticky-wrapper {
     position: sticky;
-    top: 0;
+    top: 80px;
     background-color: white;
     padding: 15px;
-    z-index: 1; 
   }
+
+  .sticky-wrapper-nav {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      padding: 15px;
+      z-index: 4; 
+    }
+  

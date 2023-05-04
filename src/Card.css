@@ -1,5 +1,6 @@
 .card-group-wrapper {
     display:flex
+
 }
 
 .ui.card {
@@ -10,7 +11,7 @@
     margin: 2px;
     padding:2px;
     display: flex;
-    padding-left: 2px;
+    width:fit-content;
 }
 
 .best-hike-card {
@@ -18,6 +19,7 @@
     padding:2px;
     display: flex;
     padding-left: 2px;
+    max-height: min-content;
 }
 
 .hike-card {

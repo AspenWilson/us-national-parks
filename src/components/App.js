@@ -21,6 +21,7 @@ function App() {
   const [selectedHikes, setSelectedHikes] = useState ([])
   const [selectedAnimals, setSelectedAnimals] = useState([])
   const [stateFilter, setStateFilter] = useState([])
+  const [hikesFilter, setHikesFilter] = useState([])
 
 
 //Parks Fetch and selectedPark
@@ -34,6 +35,7 @@ function handleSelectedPark(park) {
   setSelectedParkId(park.id)
 }
 const selectedPark = parks.find((park) => park.id === selectedParkId)
+console.log('i picked', selectedParkId, selectedPark)
 
 //States array and sort
 const allStates = Array.from(new Set(parks.map((park) => park.state)))
@@ -47,7 +49,7 @@ const sortedStates = allStates.sort((a,b) => {
   return 0
 })
 
-//Fetches
+//Hikes Fetches, Filtering Arrays and Sorts
 
 useEffect(() => {
   fetch('http://localhost:3004/hikes')
@@ -66,6 +68,10 @@ useEffect(() => {
     setAllHikes(parkAllHikes)
   })
 },[selectedParkId])
+
+const allLengths = Array.from(new Set(allHikes.map((hike) => (hike.distance))))
+const sortedLengths = allLengths.sort((a,b) => a - b)
+console.log(sortedLengths)
 
 useEffect(() => {
   fetch('http://localhost:3004/bioDiv')
@@ -94,6 +100,14 @@ const parksToDisplay = stateFilter.length > 0 ? parks.filter((park) => {
   return stateFilter.some((state) => park.state.includes(state))
 }) : parks
 
+function handleHikesFilter(e, {value}) {
+  value === '' ? setHikesFilter('') : setHikesFilter(value)
+}
+
+const hikesToDisplay = hikesFilter.length > 0 ? allHikes.filter((hike) => {
+  return hikesFilter.some((distance) => hike.distance.includes(distance))
+}) : allHikes
+
 //Handle Selected Hikes and Animals
 
 function handleSelectedHikes(hike) {
@@ -108,10 +122,11 @@ console.log(selectedHikes)
 
   return (
     <div>
+      
       <NavBar />
       <Grid columns={2}>
         <Grid.Column width = {5}>
-      <TripContainer selectedPark={selectedPark}/>
+      <TripContainer selectedPark={selectedPark} selectedHikes={selectedHikes}/>
       </Grid.Column>
       <br />
       <Switch>
@@ -119,9 +134,13 @@ console.log(selectedHikes)
         <Grid.Column width = {11}>
       <Hikes 
         bestHike={bestHike} 
-        hikes={allHikes} 
+        hikes={hikesToDisplay} 
         onClickHike={handleSelectedHikes}
         onUnclickHike={handleDeselectHike}
+        selectedPark={selectedPark}
+        sortedLengths={sortedLengths}
+        handleFilter={handleHikesFilter}
+        lengths={sortedLengths}
         />
       </Grid.Column>
         </Route>
