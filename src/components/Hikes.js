@@ -2,7 +2,6 @@ import React from 'react'
 import BestHike from './BestHike'
 import HikeCard from './HikeCard'
 import { Card } from 'semantic-ui-react'
-import HikesFilter from './HikesFilter'
 import Filter from './Filter'
 
 function Hikes({bestHike, hikes, onClickHike, onUnclickHike, selectedPark, sortedLengths, handleFilter}) {
@@ -39,8 +38,7 @@ const allHikes = sortedHikes.map((hike) => {
         onClickHike={onClickHike} 
         onUnclickHike={onUnclickHike}/>
       <br />
-      <HikesFilter 
-        sortedLengths={sortedLengths} 
+      <Filter 
         handleFilter={handleFilter} 
         options={options} 
         placeholder='Filter by hike length'/>

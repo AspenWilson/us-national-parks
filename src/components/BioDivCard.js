@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Card, Button, Image } from 'semantic-ui-react'
+import { Card, Button, Image, Grid } from 'semantic-ui-react'
 
 function BioDivCard({animal, onClickAnimal, onUnclickAnimal}) {
 
@@ -18,21 +18,31 @@ function BioDivCard({animal, onClickAnimal, onUnclickAnimal}) {
   return (
     <div className = 'animal-card'>
         <Card raised>
-            <Card.Content>
-                <Image size='small' src={animal.imgUrl} alt={animal.name}/>
-            </Card.Content>
-            <Card.Header style= {{padding:'5px'}} as='h2'>{animal.commonName}</Card.Header>
-            <Card.Description style= {{padding:'5px'}}>Category: {animal.category} </Card.Description>
-            <Card.Description style= {{padding:'5px'}}>Order: {animal.order}</Card.Description>
-            <Card.Description style= {{padding:'5px'}}>Family: {animal.family}</Card.Description>
-            <Card.Description style= {{padding:'5px'}}>Scientific Name: {animal.scientificName}</Card.Description>
-            <Card.Description style= {{padding:'5px'}}>Nativeness: {animal.nativeness}</Card.Description>
-            <Card.Description style= {{padding:'5px'}}>Abundance: {animal.abundance}</Card.Description>
-            {animal.conservationStatus.length > 1 ? 
-            <Card.Description style= {{padding:'5px'}}>Conservation Status: {animal.conservationStatus}</Card.Description> : null
-        }
-             <Card.Content extra>
-                {isSelected ? <Button basic color='red' onClick={handleUnClick}>Remove from Trip Watchlist</Button> : <Button basic color='green' onClick={handleClick}>Add to Trip Watchlist</Button>}
+            <Card.Content as='h3'>{animal.commonName},  <small>{animal.category}</small></Card.Content>
+            <Image 
+                height= {130}
+                width={140}
+                style= {{padding:'5px'}}
+                src={animal.imgUrl} 
+                floated= 'right' 
+                alt={animal.name}
+            />
+            <Grid columns={2}>
+                <Grid.Column width={8}>
+                    <Card.Description style= {{padding:'5px'}}><strong>Order:</strong> {animal.order}</Card.Description>
+                    <Card.Description style= {{padding:'5px'}}><strong>Family:</strong> {animal.family}</Card.Description>
+                    <Card.Description style= {{padding:'5px'}}><strong>Scientific Name:</strong> {animal.scientificName}</Card.Description>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                    <Card.Description style= {{padding:'5px'}}><strong>Nativeness:</strong> {animal.nativeness}</Card.Description>
+                    <Card.Description style= {{padding:'5px'}}><strong>Abundance:</strong> {animal.abundance}</Card.Description>
+                        {animal.conservationStatus.length > 1 ? 
+                            <Card.Description style= {{padding:'5px'}}><strong>Conservation Status:</strong> {animal.conservationStatus}</Card.Description> : null
+                        }
+                </Grid.Column>
+            </Grid>
+            <Card.Content extra>
+                {isSelected ? <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip Watchlist</Button> : <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip Watchlist</Button>}
             </Card.Content>
         </Card>
     </div>

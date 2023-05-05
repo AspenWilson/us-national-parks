@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Card,Image, Button } from 'semantic-ui-react'
+import { Card,Image, Button, Grid } from 'semantic-ui-react'
 
 
 function BestHike({bestHike, onClickHike, onUnclickHike}) {
@@ -17,17 +17,23 @@ function BestHike({bestHike, onClickHike, onUnclickHike}) {
     }
   return (
     <div className='best-hike-card'>
-        <Card> 
+        <Card raised> 
             <Card.Content as='h3'>FEATURED HIKE: Best Hike in {bestHike.title} as voted by Outside Magazine</Card.Content>
-        <Card.Content>
-            <Image size='medium' src={bestHike.imgUrl} />
+            <Card.Content>
+            <Grid columns={2}>
+                <Grid.Column width={7}>
+                    <Image size='medium' src={bestHike.imgUrl} />
+                </Grid.Column>
+                <Grid.Column width={9}>
+                    <Card.Header style= {{padding:'5px'}} as='h2'>{bestHike.hike}</Card.Header>
+                    <Card.Description style= {{padding:'5px'}}>{bestHike.summary}</Card.Description>
+                    <Card.Description style= {{padding:'5px'}}>
+                        {'Length: ' + bestHike.distance + ' miles'} 
+                        <br />
+                    </Card.Description>
+                </Grid.Column>
+            </Grid>
             </Card.Content>
-            <Card.Header style= {{padding:'5px'}} as='h2'>{bestHike.hike}</Card.Header>
-            {/* <Card.Meta style= {{padding:'5px'}}>{park.state}</Card.Meta> */}
-            <Card.Description style= {{padding:'5px'}}>{bestHike.summary}</Card.Description>
-            <Card.Description style= {{padding:'5px'}}>
-            {'Length: ' + bestHike.distance + ' miles'} <br />
-            </Card.Description>
             <Card.Content extra>
                 {isSelected ? <Button basic color='red' onClick={handleUnClick}>Remove from Trip</Button> : <Button basic color='green' onClick={handleClick}>Add to Trip</Button>}
             </Card.Content>

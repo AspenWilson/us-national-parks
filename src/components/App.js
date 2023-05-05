@@ -136,53 +136,55 @@ function handleDeselectHike(removedHike) {
       <NavBar />
       <Grid columns={2}>
         <Grid.Column width = {5}>
-      <TripContainer 
-        selectedPark={selectedPark} 
-        selectedHikes={selectedHikes} 
-        selectedAnimals={selectedAnimals}/>
-      </Grid.Column>
-      <br />
-      <Switch>
-        <Route exact path="/hikes">
-        <Grid.Column width = {11}>
-      <Hikes 
-        bestHike={bestHike} 
-        hikes={hikesToDisplay} 
-        onClickHike={handleSelectedHikes}
-        onUnclickHike={handleDeselectHike}
-        selectedPark={selectedPark}
-        sortedLengths={sortedLengths}
-        handleFilter={handleHikesFilter}
-        lengths={sortedLengths}
-        />
-      </Grid.Column>
-        </Route>
-        <Route exact path="/bio-div">
-        <Grid.Column width = {11}>
-          <BioDiv 
-            selectedPark={selectedPark}
-            commonAnimals={filteredCommon}
-            endangered={filteredEndangered}
-            handleFilter={handleAnimalsFilter}
-            animalsFilter={animalsFilter}
-            />
-          </Grid.Column>
-        </Route>
-        <Route exact path="/my-trips">
-        <Grid.Column width = {11}>
-          <MyTrips />
-          </Grid.Column>
-        </Route>
-        <Route exact path="/">
-        <Grid.Column width = {11}>
-        <ParksList 
-          parks={parks} 
-          onClickPark={onClickPark} 
-          states={states} 
-          handleFilter={handleFilter}/>
-          </Grid.Column>
-        </Route>
-      </Switch>
+          <TripContainer 
+            selectedPark={selectedPark} 
+            selectedHikes={selectedHikes} 
+            selectedAnimals={selectedAnimals}
+          />
+        </Grid.Column>
+        <br />
+        <Switch>
+          <Route exact path="/hikes">
+            <Grid.Column width = {11}>
+              <Hikes 
+                bestHike={bestHike} 
+                hikes={hikesToDisplay} 
+                onClickHike={handleSelectedHikes}
+                onUnclickHike={handleDeselectHike}
+                selectedPark={selectedPark}
+                sortedLengths={sortedLengths}
+                handleFilter={handleHikesFilter}
+                lengths={sortedLengths}
+              />
+            </Grid.Column>
+          </Route>
+          <Route exact path="/bio-div">
+            <Grid.Column width = {11}>
+              <BioDiv 
+                selectedPark={selectedPark}
+                commonAnimals={filteredCommon}
+                endangered={filteredEndangered}
+                handleFilter={handleAnimalsFilter}
+                animalsFilter={animalsFilter}
+              />
+            </Grid.Column>
+          </Route>
+          <Route exact path="/my-trips">
+            <Grid.Column width = {11}>
+              <MyTrips />
+            </Grid.Column>
+          </Route>
+          <Route exact path="/">
+            <Grid.Column width = {11}>
+              <ParksList 
+                parks={parksToDisplay} 
+                onClickPark={handleSelectedPark} 
+                handleFilter={handleFilter}
+                states={sortedStates}
+              />
+            </Grid.Column>
+          </Route>
+        </Switch>
       </Grid>
 
 

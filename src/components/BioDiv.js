@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import BioDivFilter from './BioDivFilter'
 import { Card, Radio } from 'semantic-ui-react'
 import BioDivCard from './BioDivCard'
+import Filter from './Filter'
 
 function BioDiv({commonAnimals, endangered, selectedPark, handleFilter}) {
 
@@ -50,7 +50,11 @@ function BioDiv({commonAnimals, endangered, selectedPark, handleFilter}) {
             slider
             />
             <br />
-      <BioDivFilter sortedCategorys={options} handleFilter={handleFilter}/>
+        <Filter 
+          options={options} 
+          handleFilter={handleFilter}
+          placeholder='Select the types of animals you want to add to your watchlist' 
+        />
       <br />
       <Card.Group className='card-group-wrapper'>{displayAnimals}</Card.Group>
       </>

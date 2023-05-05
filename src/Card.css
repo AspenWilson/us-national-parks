@@ -36,3 +36,20 @@
     padding-left: 2px;
     max-height: min-content;
 }
+
+.animalImg {
+    height: 140px;
+    width: 150px
+}
+
+.btn {
+    text-align: center;
+    width:100%;
+    height: auto;
+    bottom: 8px;
+    left: 0px;
+    right:0px;
+    padding:1em;
+    display:flex
+    
+}
