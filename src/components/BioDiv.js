@@ -15,9 +15,20 @@ function BioDiv({commonAnimals, endangered, selectedPark, handleFilter, onClickA
 
     const animalToggle = endangeredToggle ? endangered : commonAnimals
 
-    const displayAnimals = animalToggle.length > 0 ? (
-        animalToggle.map((animal) => {
-        return <BioDivCard key={animal.id} animal = {animal} />
+    const sortedAnimals= animalToggle.sort((a,b) =>{
+        if(a.commonName < b.commonName) {
+            return -1
+        }
+        if (a.commonName > b.commonName) {
+            return 1
+        }
+        return 0
+    })
+    console.log(sortedAnimals)
+
+    const displayAnimals = sortedAnimals.length > 0 ? (
+        sortedAnimals.map((animal) => {
+        return <BioDivCard key={animal.id} animal = {animal} onClickAnimal={onClickAnimal} onUnClickAnimal={onUnClickAnimal}/>
     })
     ):(
         <h3>No animals were found based on your criteria</h3>

@@ -5,7 +5,7 @@ import BioDiv from './BioDiv'
 import ParksList from './ParksList'
 import MyTrips from './MyTrips';
 import TripContainer from './TripContainer';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import React, {useEffect, useState} from 'react'
 
@@ -23,6 +23,7 @@ function App() {
   const [stateFilter, setStateFilter] = useState([])
   const [hikesFilter, setHikesFilter] = useState([])
   const [animalsFilter, setAnimalsFilter] = useState([])
+  const location= useLocation()
 
 
 //Parks Fetch and selectedPark
@@ -32,11 +33,6 @@ useEffect(() => {
   .then((parks) => setParks(parks))
 },[])
 
-function handleSelectedPark(park) {
-  setSelectedParkId(park.id)
-  setSelectedHikes([])
-  setSelectedAnimals([])
-}
 const selectedPark = parks.find((park) => park.id === selectedParkId)
 
 //States array and sort
@@ -71,8 +67,6 @@ useEffect(() => {
   })
 },[selectedParkId])
 
-const allLengths = Array.from(new Set(allHikes.map((hike) => (hike.distance))))
-const sortedLengths = allLengths.sort((a,b) => a - b)
 
 useEffect(() => {
   fetch('http://localhost:3004/bioDiv')
@@ -93,8 +87,15 @@ useEffect(() => {
   })
 },[selectedParkId])
 
+
+useEffect(() => {
+  setHikesFilter('')
+  setAnimalsFilter('')
+  setStateFilter('')
+},[location])
+
 //Filters
-function handleFilter(e, {value}) {
+function handleFilter(e,{value}) {
   value === '' ? setStateFilter('') : setStateFilter(value)
 }
 
@@ -102,7 +103,7 @@ const parksToDisplay = stateFilter.length > 0 ? parks.filter((park) => {
   return stateFilter.some((state) => park.state.includes(state))
 }) : parks
 
-function handleHikesFilter(e, {value}) {
+function handleHikesFilter(e,{value}) {
   value === '' ? setHikesFilter('') : setHikesFilter(value)
 }
 
@@ -113,7 +114,7 @@ const hikesToDisplay = hikesFilter.length > 0 ? allHikes.filter((hike) => {
 function handleAnimalsFilter (e, {value}) {
   value === '' ? setAnimalsFilter('') : setAnimalsFilter(value)
 }
-
+console.log('filter', animalsFilter)
 const filteredCommon = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
   return animalsFilter.some((category) => animal.category.includes(category))
 }) : bioDiv
@@ -130,6 +131,23 @@ function handleSelectedHikes(hike) {
 
 function handleDeselectHike(removedHike) {
   setSelectedHikes(selectedHikes.filter((hike) => hike !== removedHike))
+}
+
+function handleSelectedAnimals(animal) {
+  setSelectedAnimals([...selectedAnimals, animal])
+}
+
+function handleDeselectedAnimal(removedAnimal) {
+  setSelectedAnimals(selectedAnimals.filter((animal) => animal !== removedAnimal))
+}
+console.log('animals', selectedAnimals)
+
+function handleSelectedPark(park) {
+  setSelectedParkId(park.id)
+  setSelectedHikes([])
+  setSelectedAnimals([])
+  setHikesFilter([])
+  setAnimalsFilter([])
 }
 
   return (
@@ -154,9 +172,7 @@ function handleDeselectHike(removedHike) {
                 onClickHike={handleSelectedHikes}
                 onUnclickHike={handleDeselectHike}
                 selectedPark={selectedPark}
-                sortedLengths={sortedLengths}
                 handleFilter={handleHikesFilter}
-                lengths={sortedLengths}
               />
             </Grid.Column>
           </Route>
@@ -168,6 +184,8 @@ function handleDeselectHike(removedHike) {
                 endangered={filteredEndangered}
                 handleFilter={handleAnimalsFilter}
                 animalsFilter={animalsFilter}
+                onClickAnimal={handleSelectedAnimals}
+                onUnClickAnimal={handleDeselectedAnimal}
               />
             </Grid.Column>
           </Route>

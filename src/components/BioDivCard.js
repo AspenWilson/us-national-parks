@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Card, Button, Image, Grid } from 'semantic-ui-react'
 
-function BioDivCard({animal, onClickAnimal, onUnclickAnimal}) {
+function BioDivCard({animal, onClickAnimal, onUnClickAnimal}) {
 
     const [isSelected, setIsSelected] = useState(false)
 
@@ -12,7 +12,7 @@ function BioDivCard({animal, onClickAnimal, onUnclickAnimal}) {
 
     function handleUnClick() {
         setIsSelected((isSelected) => !isSelected)
-        onUnclickAnimal(animal)
+        onUnClickAnimal(animal)
     }
 
   return (
