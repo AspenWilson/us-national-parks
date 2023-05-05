@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button, Form, TextArea } from 'semantic-ui-react'
 import '../TripContainer.css'
 
 
@@ -11,7 +11,7 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
 
     const bioDivNames = selectedAnimals.length > 0 ? selectedAnimals.map((animal) => {
         return <li>{animal.commonName}</li>
-    }) : `Selected animals you'd like to remind yourself to lookout for`
+    }) : `Select animals you'd like to remind yourself to lookout for`
 
 console.log(selectedHikes)
 
@@ -19,20 +19,29 @@ console.log(selectedHikes)
     <div className='sticky-wrapper'>
     {selectedPark ? (
         <Card >
+            <Card.Content textAlign='center' as='h1'>My trip</Card.Content>
         <Card.Content>
             <Image size='medium' src={selectedPark.imgUrl} />
             </Card.Content>
-            <Card.Description style= {{padding:'5px'}} as='h5'>
-                Selected Park: {selectedPark.title}
-            </Card.Description>
-            <Card.Meta style= {{padding:'5px'}} as='h5'>
-                Selected Hike(s):
+            <Card.Content style= {{padding:'5px'}}>
+                <strong>Selected Park:</strong> {selectedPark.title}
+            </Card.Content>
+            <Card.Content style= {{padding:'5px'}} >
+                <strong>Selected Hike(s):</strong>
                 <ul>{hikeNames}</ul>
-            </Card.Meta>
-            <Card.Meta style= {{padding:'5px'}} as='h5'>
-                Bio-Diversity Watchlist:
+            </Card.Content>
+            <Card.Content style= {{padding:'5px'}} >
+                <strong>Bio-Diversity Watchlist:</strong>
                 <ul>{bioDivNames}</ul>
-            </Card.Meta>
+            </Card.Content>
+            <Card.Content>
+                <Form>
+                    <TextArea placeholder='Add notes to your trip...' />
+                </Form>
+            </Card.Content>
+            <Card.Content extra>
+                <Button basic color='green' className='btn'>Save my Trip!</Button>
+            </Card.Content>
         </Card>
   ) : (
     <Card 

@@ -9,12 +9,11 @@ function Park({park, onClickPark}) {
 
   return (
     <div className='park-card'>
-        <Card onClick= {handleClick}>
+        <Card raised onClick= {handleClick}>
+        <Card.Content style= {{padding:'5px'}} textAlign='center' as='h3'>{park.title}, <small>{park.state}</small></Card.Content>
         <Card.Content>
             <Image size='medium' src={park.imgUrl} />
-            </Card.Content>
-            <Card.Header style= {{padding:'5px'}} as='h3'>{park.title}</Card.Header>
-            <Card.Meta style= {{padding:'5px'}} as='h5'>{park.state}</Card.Meta>
+        </Card.Content>
             <Card.Description style= {{padding:'5px'}} as='p'>{park.description}</Card.Description>
             <Card.Content extra as='small' >
             {'Established: ' + park.est} <br />

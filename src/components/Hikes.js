@@ -38,12 +38,18 @@ const allHikes = sortedHikes.map((hike) => {
         onClickHike={onClickHike} 
         onUnclickHike={onUnclickHike}/>
       <br />
-      <Filter 
-        handleFilter={handleFilter} 
-        options={options} 
-        placeholder='Filter by hike length'/>
-      <br />
-      <Card.Group className='card-group-wrapper'>{allHikes}</Card.Group>
+      {allHikes.length > 0 ? (
+            <>
+              <Filter 
+              handleFilter={handleFilter} 
+              options={options} 
+              placeholder='Filter by hike length'/>
+            <br />
+            <Card.Group className='card-group-wrapper'>{allHikes}</Card.Group>
+            </>
+      ) : (
+        <h3>No hikes found for {selectedPark.title}</h3>
+      )}
       </>
         ) : (
             <h3>Select a park to see hikes!</h3>
