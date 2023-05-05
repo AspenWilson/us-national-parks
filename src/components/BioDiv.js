@@ -3,33 +3,37 @@ import { Card, Radio } from 'semantic-ui-react'
 import BioDivCard from './BioDivCard'
 import Filter from './Filter'
 
-function BioDiv({commonAnimals, endangered, selectedPark, handleFilter}) {
-
+function BioDiv({commonAnimals, endangered, selectedPark, handleFilter, onClickAnimal, onUnClickAnimal}) {
 
     const [endangeredToggle, setEndangered] = useState(false)
+    const [selectedFilter, setSelectedFilter] = useState('')
 
     function handleToggle() {
         setEndangered(!endangeredToggle)
+        setSelectedFilter('')
     }
 
     const animalToggle = endangeredToggle ? endangered : commonAnimals
 
-    
-
-    const displayAnimals = animalToggle.map((animal) => {
+    const displayAnimals = animalToggle.length > 0 ? (
+        animalToggle.map((animal) => {
         return <BioDivCard key={animal.id} animal = {animal} />
     })
+    ):(
+        <h3>No animals were found based on your criteria</h3>
+    )
 
     const allCategorys = Array.from(new Set(animalToggle.map((animal) => animal.category)))
+    
     const sortedCategorys = allCategorys.sort((a,b) => {
-  if (a < b) {
-    return -1
-  }
-  if (a> b) {
-    return 1
-  }
-  return 0
-})
+        if (a < b) {
+            return -1
+        }
+        if (a > b) {
+            return 1
+        }
+        return 0
+    })
 
     const options=sortedCategorys.map((category) => ({
         key: category,
@@ -50,14 +54,15 @@ function BioDiv({commonAnimals, endangered, selectedPark, handleFilter}) {
             slider
             />
             <br />
+        <h5>Filter by animal category</h5>
         <Filter 
           options={options} 
           handleFilter={handleFilter}
           placeholder='Select the types of animals you want to add to your watchlist' 
         />
-      <br />
-      <Card.Group className='card-group-wrapper'>{displayAnimals}</Card.Group>
-      </>
+        <br />
+        <Card.Group className='card-group-wrapper'>{displayAnimals}</Card.Group>
+        </>
         ) : (
             <h3>Select a park to what kinds of wildlife you can see there and add them to your watchlist!</h3>
         )}
