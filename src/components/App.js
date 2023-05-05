@@ -34,6 +34,8 @@ useEffect(() => {
 
 function handleSelectedPark(park) {
   setSelectedParkId(park.id)
+  setSelectedHikes([])
+  setSelectedAnimals([])
 }
 const selectedPark = parks.find((park) => park.id === selectedParkId)
 
