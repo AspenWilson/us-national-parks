@@ -3,7 +3,8 @@ import BioDivFilter from './BioDivFilter'
 import { Card, Radio } from 'semantic-ui-react'
 import BioDivCard from './BioDivCard'
 
-function BioDiv({commonAnimals, endangered, sortedCategorys, selectedPark}) {
+function BioDiv({commonAnimals, endangered, selectedPark, handleFilter}) {
+
 
     const [endangeredToggle, setEndangered] = useState(false)
 
@@ -13,11 +14,28 @@ function BioDiv({commonAnimals, endangered, sortedCategorys, selectedPark}) {
 
     const animalToggle = endangeredToggle ? endangered : commonAnimals
 
-    console.log(animalToggle)
+    
 
     const displayAnimals = animalToggle.map((animal) => {
         return <BioDivCard key={animal.id} animal = {animal} />
     })
+
+    const allCategorys = Array.from(new Set(animalToggle.map((animal) => animal.category)))
+    const sortedCategorys = allCategorys.sort((a,b) => {
+  if (a < b) {
+    return -1
+  }
+  if (a> b) {
+    return 1
+  }
+  return 0
+})
+
+    const options=sortedCategorys.map((category) => ({
+        key: category,
+        text: category,
+        value: category
+    }))
 
   return (
     <div>
@@ -32,7 +50,7 @@ function BioDiv({commonAnimals, endangered, sortedCategorys, selectedPark}) {
             slider
             />
             <br />
-      {/* <BioDivFilter sortedcategorys={sortedCategorys} /> */}
+      <BioDivFilter sortedCategorys={options} handleFilter={handleFilter}/>
       <br />
       <Card.Group className='card-group-wrapper'>{displayAnimals}</Card.Group>
       </>

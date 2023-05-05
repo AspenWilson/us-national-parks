@@ -3,17 +3,15 @@ import {Dropdown} from 'semantic-ui-react'
 
 function BioDivFilter({sortedCategorys,handleFilter}) {
 
-const options=sortedCategorys.map((category) => ({
-    key: category,
-    text: category,
-    value: category
-}))
-
-
-
   return (
     <div>
-      <Dropdown placeholder='Select state or states to filter by' fluid multiple selection options={options} onChange={handleFilter}/>
+      <Dropdown 
+      placeholder='Select the types of animals you want to add to your watchlist' 
+      fluid 
+      multiple 
+      selection 
+      options={sortedCategorys} 
+      onChange={handleFilter}/>
     </div>
   )
 }

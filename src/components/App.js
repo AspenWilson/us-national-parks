@@ -2,7 +2,7 @@ import  '../App.css';
 import NavBar from './NavBar'
 import Hikes from './Hikes'
 import BioDiv from './BioDiv'
-import Home from './Home';
+import ParksList from './ParksList'
 import MyTrips from './MyTrips';
 import TripContainer from './TripContainer';
 import { Route, Switch } from 'react-router-dom'
@@ -36,7 +36,6 @@ function handleSelectedPark(park) {
   setSelectedParkId(park.id)
 }
 const selectedPark = parks.find((park) => park.id === selectedParkId)
-console.log('i picked', selectedParkId, selectedPark)
 
 //States array and sort
 const allStates = Array.from(new Set(parks.map((park) => park.state)))
@@ -82,16 +81,6 @@ useEffect(() => {
   })
 }, [selectedParkId])
 
-const allCategorys = Array.from(new Set(bioDiv.map((animal) => animal.category)))
-const sortedCategorys = allCategorys.sort((a,b) => {
-  if (a < b) {
-    return -1
-  }
-  if (a> b) {
-    return 1
-  }
-  return 0
-})
 
 useEffect(() => {
   fetch('http://localhost:3004/endangered')
@@ -123,9 +112,13 @@ function handleAnimalsFilter (e, {value}) {
   value === '' ? setAnimalsFilter('') : setAnimalsFilter(value)
 }
 
-const commonBioDivtoDisplay = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
+const filteredCommon = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
   return animalsFilter.some((category) => animal.category.includes(category))
 }) : bioDiv
+
+const filteredEndangered = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
+  return animalsFilter.some((category) => animal.category.includes(category))
+}) : endangered
 
 //Handle Selected Hikes and Animals
 
@@ -168,10 +161,10 @@ function handleDeselectHike(removedHike) {
         <Grid.Column width = {11}>
           <BioDiv 
             selectedPark={selectedPark}
-            commonAnimals={commonBioDivtoDisplay}
-            endangered={endangered}
-            sortedCategorys={sortedCategorys}
+            commonAnimals={filteredCommon}
+            endangered={filteredEndangered}
             handleFilter={handleAnimalsFilter}
+            animalsFilter={animalsFilter}
             />
           </Grid.Column>
         </Route>
@@ -182,12 +175,11 @@ function handleDeselectHike(removedHike) {
         </Route>
         <Route exact path="/">
         <Grid.Column width = {11}>
-          <Home 
-            parks={parksToDisplay} 
-            onClickPark={handleSelectedPark}
-            states={sortedStates}
-            handleFilter={handleFilter}
-          />  
+        <ParksList 
+          parks={parks} 
+          onClickPark={onClickPark} 
+          states={states} 
+          handleFilter={handleFilter}/>
           </Grid.Column>
         </Route>
       </Switch>
