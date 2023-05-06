@@ -73,7 +73,6 @@ useEffect(() => {
   .then((resp) => resp.json())
   .then((myTrips) => setMyTrips(myTrips))
 },[])
-console.log(myTrips)
 
 //Filters
 
@@ -131,7 +130,6 @@ function sortFilters(arr, key) {
 
   const commonProps={selectedPark, optionsArr, sortFilters, filterArray}
 
- console.log(selectedAnimals)
   return (
     <div>
       <NavBar />

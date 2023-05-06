@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Card, Image, Button, Form, TextArea } from 'semantic-ui-react'
 import '../TripContainer.css'
 
 
 function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
+
+    const [notes, setNotes] = useState('')
 
     const hikeNames= selectedHikes.length > 0 ? selectedHikes.map((hike) => {
         return  <li key={hike.id}>{hike.name}</li>
@@ -13,6 +15,12 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
           return <li key={animal.id}>{animal.commonName}</li>
       }) : `Select animals you'd like to remind yourself to lookout for`
 
+      function handleSubmit (e){
+        e.preventDefault()
+        console.log('new trip', `park:`, {selectedPark},`hikes:`, {selectedHikes}, `bioDiv:`, {selectedAnimals}, `notes: `,{notes}
+        )
+      }
+    
   return (
     <div className='sticky-wrapper'>
     {selectedPark ? (
@@ -33,12 +41,10 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
                 <ul>{bioDivNames}</ul>
             </Card.Content>
             <Card.Content>
-                <Form>
-                    <TextArea placeholder='Add notes to your trip...' />
+                <Form onSubmit={handleSubmit}>
+                    <TextArea onChange={(e) => setNotes(e.target.value)} placeholder='Add notes to your trip...' />
+                    <Button basic color='green' className='btn' type='submit' >Save my Trip!</Button>
                 </Form>
-            </Card.Content>
-            <Card.Content extra>
-                <Button basic color='green' className='btn'>Save my Trip!</Button>
             </Card.Content>
         </Card>
   ) : (
