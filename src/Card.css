@@ -58,6 +58,6 @@
     margin: 2px;
     padding:2px;
     display: flex;
-    padding-left: 2px;
+    padding-right: 20px;
     max-height: min-content;
 }

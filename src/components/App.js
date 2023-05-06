@@ -131,7 +131,7 @@ function sortFilters(arr, key) {
 
   const commonProps={selectedPark, optionsArr, sortFilters, filterArray}
 
-
+ console.log(selectedAnimals)
   return (
     <div>
       <NavBar />

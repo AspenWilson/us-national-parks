@@ -6,7 +6,11 @@ function MyTrips({myTrips}) {
 
   const [completedToggle, setCompletedToggle] = useState(false)
 
-  const allTrips = myTrips.map((trip) => {
+  const savedTrips = myTrips.filter((trip) => trip.completed == false)
+  const completedTrips = myTrips.filter((trip) => trip.completed == true)
+  const displayTrips = completedToggle ? completedTrips : savedTrips
+
+  const allTrips = displayTrips.map((trip) => {
     return <MyTripsCard key={trip.id} trip={trip} />
   })
 
