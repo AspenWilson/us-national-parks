@@ -14,13 +14,14 @@ function App() {
 
   const url = `http://localhost:3004`
   const [parks, setParks] = useState([])
-  const [selectedParkId, setSelectedParkId] = useState(null)
-  const [bestHike, setBestHike] = useState([])
   const [bioDiv, setBioDiv] = useState([])
-  const [endangered, setEndangered] = useState ([])
+  const [myTrips, setMyTrips] = useState([])
+  const [bestHike, setBestHike] = useState([])
   const [allHikes, setAllHikes] = useState([])
-  const [selectedHikes, setSelectedHikes] = useState ([])
+  const [endangered, setEndangered] = useState ([])
+  const [selectedParkId, setSelectedParkId] = useState(null)
   const [selectedAnimals, setSelectedAnimals] = useState([])
+  const [selectedHikes, setSelectedHikes] = useState ([])
   const [stateFilter, setStateFilter] = useState([])
   const [hikesFilter, setHikesFilter] = useState([])
   const [animalsFilter, setAnimalsFilter] = useState([])
@@ -64,6 +65,15 @@ useEffect(() => {
   setAnimalsFilter([])
   setStateFilter([])
 },[location])
+
+//MyTrips Fetch
+
+useEffect(() => {
+  fetch(url + '/myTrips')
+  .then((resp) => resp.json())
+  .then((myTrips) => setMyTrips(myTrips))
+},[])
+console.log(myTrips)
 
 //Filters
 
@@ -164,7 +174,9 @@ function sortFilters(arr, key) {
           </Route>
           <Route exact path="/my-trips">
             <Grid.Column width = {11}>
-              <MyTrips />
+              <MyTrips 
+                myTrips={myTrips}
+              />
             </Grid.Column>
           </Route>
           <Route exact path="/">

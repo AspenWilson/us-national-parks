@@ -7,11 +7,9 @@ function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnCli
 
     const {selectedPark, optionsArr, sortFilters, filterArray} = {...commonProps}
     const [endangeredToggle, setEndangered] = useState(false)
-    const [selectedFilter, setSelectedFilter] = useState('')
 
     function handleToggle() {
         setEndangered(!endangeredToggle)
-        setSelectedFilter('')
     }
 
     const animalToggle = endangeredToggle ? endangered : commonAnimals
