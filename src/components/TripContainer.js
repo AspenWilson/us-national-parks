@@ -5,15 +5,13 @@ import '../TripContainer.css'
 
 function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
 
-    console.log(selectedAnimals)
-
     const hikeNames= selectedHikes.length > 0 ? selectedHikes.map((hike) => {
-      return  <li key={hike.id}>{hike.name}</li>
-    }) : 'Select hikes to add them to your National Park trip'
-
-    const bioDivNames = selectedAnimals.length > 0 ? selectedAnimals.map((animal) => {
-        return <li key={animal.id}>{animal.commonName}</li>
-    }) : `Select animals you'd like to remind yourself to lookout for`
+        return  <li key={hike.id}>{hike.name}</li>
+      }) : 'Select hikes to add them to your National Park trip'
+  
+      const bioDivNames = selectedAnimals.length > 0 ? selectedAnimals.map((animal) => {
+          return <li key={animal.id}>{animal.commonName}</li>
+      }) : `Select animals you'd like to remind yourself to lookout for`
 
   return (
     <div className='sticky-wrapper'>

@@ -7,12 +7,12 @@ function BestHike({bestHike, onClickHike, onUnclickHike}) {
     const [isSelected, setIsSelected] = useState(false)
 
     function handleClick () {
-        setIsSelected((isSelected) => !isSelected)
+        setIsSelected(!isSelected)
         onClickHike(bestHike)
     }
 
     function handleUnClick() {
-        setIsSelected((isSelected) => !isSelected)
+        setIsSelected(!isSelected)
         onUnclickHike(bestHike)
     }
   return (

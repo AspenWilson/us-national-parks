@@ -1,13 +1,16 @@
 import React from 'react'
 import {Dropdown} from 'semantic-ui-react'
 
-function Filter({options,handleFilter}) {
+function Filter({options,handleFilter, placeholder}) {
 
   return (
     <div>
       <Dropdown 
-        fluid multiple selection 
+        fluid 
+        multiple 
+        selection 
         options={options} 
+        placeholder={placeholder}
         onChange={handleFilter}/>
     </div>
   )

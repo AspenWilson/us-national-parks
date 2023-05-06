@@ -44,7 +44,10 @@ function BioDivCard({animal, onClickAnimal, onUnClickAnimal}) {
             </Grid>
             </Card.Content>
             <Card.Content extra>
-                {isSelected ? <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip Watchlist</Button> : <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip Watchlist</Button>}
+                {isSelected ? 
+                <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip Watchlist</Button> 
+                : 
+                <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip Watchlist</Button>}
             </Card.Content>
         </Card>
     </div>

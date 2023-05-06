@@ -4,31 +4,17 @@ import HikeCard from './HikeCard'
 import { Card } from 'semantic-ui-react'
 import Filter from './Filter'
 
-function Hikes({bestHike, hikes, onClickHike, onUnclickHike, selectedPark, handleFilter}) {
+function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...commonProps}) {
 
-    const allLengths = Array.from(new Set(hikes.map((hike) => (hike.distance))))
-    const sortedLengths = allLengths.sort((a,b) => a - b)
-
-    const sortedHikes=hikes.sort((a,b) => {
-        if(a.name < b.name) {
-            return -1
-        }
-        if (a.name > b.name) {
-            return 1
-        }
-        return 0
-    })
-
-    const options=sortedLengths.map((distance) => ({
-        key: distance,
-        text: distance + ' miles',
-        value: distance
-    }))
+    const {selectedPark, optionsArr, sortFilters, filterArray} = {...commonProps}
+    const allLengths = filterArray (hikes, 'distance')
+    const sortedLengths = sortFilters(allLengths)
+    const sortedHikes = sortFilters(hikes, 'name')
+    const options= optionsArr(sortedLengths)
 
     const allHikes = sortedHikes.map((hike) => {
         return <HikeCard hike={hike} key={hike.id} onClickHike={onClickHike} onUnclickHike={onUnclickHike}/>
     })
-
 
   return (
     <div>

@@ -6,12 +6,12 @@ function HikeCard({hike, onClickHike, onUnclickHike}) {
     const [isSelected, setIsSelected] = useState(false)
 
     function handleClick () {
-        setIsSelected((isSelected) => !isSelected)
+        setIsSelected(!isSelected)
         onClickHike(hike)
     }
 
     function handleUnClick() {
-        setIsSelected((isSelected) => !isSelected)
+        setIsSelected(!isSelected)
         onUnclickHike(hike)
     }
 
@@ -30,7 +30,9 @@ function HikeCard({hike, onClickHike, onUnclickHike}) {
                 }
             </Card.Content>
              <Card.Content extra>
-                {isSelected ? <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip</Button> : <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip</Button>}
+                {isSelected ? 
+                <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip</Button> : 
+                <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip</Button>}
             </Card.Content>
         </Card>
     </div>
