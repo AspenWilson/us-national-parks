@@ -35,119 +35,69 @@ useEffect(() => {
 
 const selectedPark = parks.find((park) => park.id === selectedParkId)
 
-//States array and sort
-const allStates = Array.from(new Set(parks.map((park) => park.state)))
-const sortedStates = allStates.sort((a,b) => {
-  if (a < b){
-    return -1
-  }
-  if (a > b) {
-    return 1
-  }
-  return 0
-})
 
-//Hikes Fetches, Filtering Arrays and Sorts
-
+//Hikes and Bio Div Fetches, all re-rendered when selectedParkId state changes
 useEffect(() => {
-  fetch('http://localhost:3004/hikes')
-  .then((resp) => resp.json())
-  .then((hikes) => {
+  Promise.all([
+    fetch('http://localhost:3004/hikes').then((resp) => resp.json()),
+    fetch('http://localhost:3004/allHikes').then((resp) => resp.json()),
+    fetch('http://localhost:3004/bioDiv').then((resp) => resp.json()),
+    fetch('http://localhost:3004/endangered').then((resp) => resp.json()),
+  ]).then(([hikes, allHikes, animals, endangeredAnimals]) => {
     const parkBestHike = hikes.find((hike) => hike.parkId === selectedPark.id)
     setBestHike(parkBestHike)
-  })
-},[selectedParkId])
 
-useEffect(() => {
-  fetch('http://localhost:3004/allHikes')
-  .then((resp) => resp.json())
-  .then((hikes) => {
-    const parkAllHikes = hikes.filter((hike) => hike.parkId === selectedPark.id)
+    const parkAllHikes = allHikes.filter((hike) => hike.parkId === selectedPark.id)
     setAllHikes(parkAllHikes)
-  })
-},[selectedParkId])
 
-
-useEffect(() => {
-  fetch('http://localhost:3004/bioDiv')
-  .then((resp) => resp.json())
-  .then((animals) => {
     const commonAnimals = animals.filter((animal) => animal.parkId === selectedPark.id)
     setBioDiv(commonAnimals)
+
+    const endangered = endangeredAnimals.filter((animal) => animal.parkId === selectedPark.id)
+    setEndangered(endangered)
   })
 }, [selectedParkId])
 
 
 useEffect(() => {
-  fetch('http://localhost:3004/endangered')
-  .then((resp) => resp.json())
-  .then((animals) => {
-    const endangeredAnimals = animals.filter((animal) => animal.parkId === selectedPark.id)
-    setEndangered(endangeredAnimals)
-  })
-},[selectedParkId])
-
-
-useEffect(() => {
-  setHikesFilter('')
-  setAnimalsFilter('')
-  setStateFilter('')
+  setHikesFilter([])
+  setAnimalsFilter([])
+  setStateFilter([])
 },[location])
 
 //Filters
-function handleFilter(e,{value}) {
+
+function handleFilter(e, {value}) {
   value === '' ? setStateFilter('') : setStateFilter(value)
 }
 
-const parksToDisplay = stateFilter.length > 0 ? parks.filter((park) => {
-  return stateFilter.some((state) => park.state.includes(state))
-}) : parks
-
-function handleHikesFilter(e,{value}) {
+function handleHikesFilter(e, {value}) {
   value === '' ? setHikesFilter('') : setHikesFilter(value)
 }
-
-const hikesToDisplay = hikesFilter.length > 0 ? allHikes.filter((hike) => {
-  return hikesFilter.some((distance) => hike.distance.includes(distance))
-}) : allHikes
 
 function handleAnimalsFilter (e, {value}) {
   value === '' ? setAnimalsFilter('') : setAnimalsFilter(value)
 }
-console.log('filter', animalsFilter)
-const filteredCommon = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
-  return animalsFilter.some((category) => animal.category.includes(category))
-}) : bioDiv
 
-const filteredEndangered = animalsFilter.length > 0 ? bioDiv.filter((animal) => {
-  return animalsFilter.some((category) => animal.category.includes(category))
-}) : endangered
+function filteredList (items, filterValue, filterCallBack) {
+  return filterValue.length > 0 ? items.filter((item) => {
+    return filterValue.some((filter) => filterCallBack(item, filter)) 
+  }) : items
+}
 
 //Handle Selected Hikes and Animals
-
-function handleSelectedHikes(hike) {
-  setSelectedHikes([...selectedHikes, hike])
+function handleSelected(item, selectedItems, setSelectedItems) {
+  setSelectedItems([...selectedItems, item]);
 }
 
-function handleDeselectHike(removedHike) {
-  setSelectedHikes(selectedHikes.filter((hike) => hike !== removedHike))
+function handleDeselect(item, selectedItems, setSelectedItems) {
+  setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
 }
-
-function handleSelectedAnimals(animal) {
-  setSelectedAnimals([...selectedAnimals, animal])
-}
-
-function handleDeselectedAnimal(removedAnimal) {
-  setSelectedAnimals(selectedAnimals.filter((animal) => animal !== removedAnimal))
-}
-console.log('animals', selectedAnimals)
 
 function handleSelectedPark(park) {
   setSelectedParkId(park.id)
   setSelectedHikes([])
   setSelectedAnimals([])
-  setHikesFilter([])
-  setAnimalsFilter([])
 }
 
   return (
@@ -168,9 +118,9 @@ function handleSelectedPark(park) {
             <Grid.Column width = {11}>
               <Hikes 
                 bestHike={bestHike} 
-                hikes={hikesToDisplay} 
-                onClickHike={handleSelectedHikes}
-                onUnclickHike={handleDeselectHike}
+                hikes={filteredList (allHikes, hikesFilter, (hike, distance) => hike.distance.includes(distance))} 
+                onClickHike={(hike) => handleSelected(hike, selectedHikes, setSelectedHikes)}
+                onUnclickHike={(removedHike) => handleDeselect(removedHike, selectedHikes, setSelectedHikes)}
                 selectedPark={selectedPark}
                 handleFilter={handleHikesFilter}
               />
@@ -180,13 +130,13 @@ function handleSelectedPark(park) {
             <Grid.Column width = {11}>
               <BioDiv 
                 selectedPark={selectedPark}
-                commonAnimals={filteredCommon}
-                endangered={filteredEndangered}
+                commonAnimals={filteredList (bioDiv, animalsFilter, (animal, category) => animal.category.includes(category))}
+                endangered={filteredList (endangered, animalsFilter, (animal, category) => animal.category.includes(category))}
                 handleFilter={handleAnimalsFilter}
                 animalsFilter={animalsFilter}
-                onClickAnimal={handleSelectedAnimals}
-                onUnClickAnimal={handleDeselectedAnimal}
-              />
+                onClickAnimal={(animal) => handleSelected(animal, selectedAnimals, setSelectedAnimals)}
+                onUnClickAnimal={(removedAnimal) => handleDeselect(removedAnimal, selectedAnimals, setSelectedAnimals)}
+                />
             </Grid.Column>
           </Route>
           <Route exact path="/my-trips">
@@ -197,10 +147,9 @@ function handleSelectedPark(park) {
           <Route exact path="/">
             <Grid.Column width = {11}>
               <ParksList 
-                parks={parksToDisplay} 
+                parks={filteredList (parks, stateFilter, (park, state) => park.state.includes(state))} 
                 onClickPark={handleSelectedPark} 
                 handleFilter={handleFilter}
-                states={sortedStates}
               />
             </Grid.Column>
           </Route>

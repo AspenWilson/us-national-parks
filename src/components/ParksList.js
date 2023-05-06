@@ -4,13 +4,25 @@ import {Card } from 'semantic-ui-react'
 import '../Card.css'
 import Filter from './Filter'
 
-function ParksList({parks, onClickPark, states, handleFilter}) {
+function ParksList({parks, onClickPark, handleFilter}) {
+
+  const allStates = Array.from(new Set(parks.map((park) => park.state)))
+  
+  const sortedStates = allStates.sort((a,b) => {
+    if (a < b){
+      return -1
+    }
+    if (a > b) {
+      return 1
+    }
+    return 0
+  })
 
   const allParks = parks.map((park) => {
     return <Park key={park.id} park={park} onClickPark={onClickPark}/>
   })
 
-  const options=states.map((state) => ({
+  const options=sortedStates.map((state) => ({
     key: state,
     text: state,
     value: state
