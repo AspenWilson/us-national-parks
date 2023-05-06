@@ -25,7 +25,16 @@ function App() {
   const [stateFilter, setStateFilter] = useState([])
   const [hikesFilter, setHikesFilter] = useState([])
   const [animalsFilter, setAnimalsFilter] = useState([])
+  const [notes, setNotes] = useState('')
   const location= useLocation()
+  // const [newTrip, setNewTrip] = useState({
+  //   park: '', 
+  //   imgUrl: '', 
+  //   bioDiv: '',
+  //   hikes: '', 
+  //   notes: '',
+  //   completed: false
+  // })
 
 //Parks Fetch and selectedPark
 useEffect(() => {
@@ -45,16 +54,16 @@ useEffect(() => {
     fetch(url + '/endangered').then((resp) => resp.json()),
   ])
     .then(([hikes, allHikes, animals, endangeredAnimals]) => {
-      const parkBestHike = hikes.find((hike) => hike.parkId === selectedPark.id)
+      const parkBestHike = hikes.find((hike) => hike.parkId === selectedParkId)
       setBestHike(parkBestHike)
 
-      const parkAllHikes = allHikes.filter((hike) => hike.parkId === selectedPark.id)
+      const parkAllHikes = allHikes.filter((hike) => hike.parkId === selectedParkId)
       setAllHikes(parkAllHikes)
 
-      const commonAnimals = animals.filter((animal) => animal.parkId === selectedPark.id)
+      const commonAnimals = animals.filter((animal) => animal.parkId === selectedParkId)
       setBioDiv(commonAnimals)
 
-      const endangered = endangeredAnimals.filter((animal) => animal.parkId === selectedPark.id)
+      const endangered = endangeredAnimals.filter((animal) => animal.parkId === selectedParkId)
       setEndangered(endangered)
     })
 }, [selectedParkId])
@@ -130,6 +139,23 @@ function sortFilters(arr, key) {
 
   const commonProps={selectedPark, optionsArr, sortFilters, filterArray}
 
+  //POST functions
+
+  function handleSubmit (e){
+    e.preventDefault()
+    const tripHikes= selectedHikes.map((hike) => hike.name)
+    const tripBioDiv = selectedAnimals.map((animal) => animal.commonName)
+    const newTrip = ({
+        park: selectedPark.title, 
+        imgUrl: selectedPark.imgUrl, 
+        bioDiv: tripBioDiv, 
+        hikes: tripHikes, 
+        notes: notes,
+        completed: false
+    })
+    console.log('new trip', newTrip)
+  }
+
   return (
     <div>
       <NavBar />
@@ -139,6 +165,8 @@ function sortFilters(arr, key) {
             selectedPark={selectedPark} 
             selectedHikes={selectedHikes} 
             selectedAnimals={selectedAnimals}
+            setNotes = {setNotes}
+            handleSubmit = {handleSubmit}
           />
         </Grid.Column>
         <br />

@@ -3,9 +3,7 @@ import { Card, Image, Button, Form, TextArea } from 'semantic-ui-react'
 import '../TripContainer.css'
 
 
-function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
-
-    const [notes, setNotes] = useState('')
+function TripContainer({selectedPark, selectedHikes, selectedAnimals, setNotes, handleSubmit}) {
 
     const hikeNames= selectedHikes.length > 0 ? selectedHikes.map((hike) => {
         return  <li key={hike.id}>{hike.name}</li>
@@ -15,11 +13,6 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals}) {
           return <li key={animal.id}>{animal.commonName}</li>
       }) : `Select animals you'd like to remind yourself to lookout for`
 
-      function handleSubmit (e){
-        e.preventDefault()
-        console.log('new trip', `park:`, {selectedPark},`hikes:`, {selectedHikes}, `bioDiv:`, {selectedAnimals}, `notes: `,{notes}
-        )
-      }
     
   return (
     <div className='sticky-wrapper'>
