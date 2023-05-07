@@ -44,7 +44,6 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
                 <Card.Description style= {{padding:'5px'}}><strong>Trail Class:</strong> {hike.class}</Card.Description>
                 <Card.Description style= {{padding:'5px'}}><strong>Trail Surface:</strong> {hike.surface}</Card.Description>
                 <Card.Description style= {{padding:'5px'}}><strong>Trail Type:</strong> {hike.type}</Card.Description>
-                <Card.Description style= {{padding:'5px'}}><strong>Trail Use:</strong> {hike.use}</Card.Description>
                 <Card.Description style= {{padding:'5px'}}><strong>Seasonal Use?</strong> {hike.seasonal}</Card.Description>
                 {hike.seasonal === "Yes" ? 
                     <Card.Description style= {{padding:'5px'}}><strong>Seasonal Use Details:</strong> {hike.seasonalDetails}</Card.Description> : null
