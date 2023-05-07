@@ -5,7 +5,7 @@ import Filter from './Filter'
 
 function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnClickAnimal, ...commonProps}) {
 
-    const {selectedPark, optionsArr, sortFilters, filterArray} = {...commonProps}
+    const {setAnimalsFilter, selectedPark, optionsArr, sortFilters, filterArray} = {...commonProps}
     const [endangeredToggle, setEndangered] = useState(false)
 
     function handleToggle() {

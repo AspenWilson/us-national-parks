@@ -130,7 +130,7 @@ function sortFilters(arr, key) {
     return options
   }
 
-  const commonProps={selectedPark, optionsArr, sortFilters, filterArray}
+  const commonProps={selectedPark, optionsArr, sortFilters, filterArray, setAnimalsFilter}
 
   //POST functions
 

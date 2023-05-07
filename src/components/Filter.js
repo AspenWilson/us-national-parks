@@ -1,7 +1,7 @@
 import React from 'react'
 import {Dropdown} from 'semantic-ui-react'
 
-function Filter({options,handleFilter, placeholder}) {
+function Filter({options,handleFilter, placeholder, value}) {
 
   return (
     <div className= 'filter'>
@@ -11,6 +11,7 @@ function Filter({options,handleFilter, placeholder}) {
         selection 
         options={options} 
         placeholder={placeholder}
+        value={value}
         onChange={handleFilter}/>
     </div>
   )
