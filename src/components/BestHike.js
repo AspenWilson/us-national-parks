@@ -25,7 +25,7 @@ function BestHike({bestHike, onClickHike, onUnclickHike}) {
                     <Image size='medium' src={bestHike.imgUrl} />
                 </Grid.Column>
                 <Grid.Column width={9}>
-                    <Card.Header style= {{padding:'5px'}} as='h2'>{bestHike.hike}</Card.Header>
+                    <Card.Header style= {{padding:'5px'}} as='h2'>{bestHike.name}</Card.Header>
                     <Card.Description style= {{padding:'5px'}}>{bestHike.summary}</Card.Description>
                     <Card.Description style= {{padding:'5px'}}>
                         {'Length: ' + bestHike.distance + ' miles'} 

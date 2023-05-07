@@ -1,14 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Card, Image, Button, Grid} from 'semantic-ui-react'
 
 function MyTripsCard({trip}) {
 
-    const [isCompleted, setIsCompleted] = useState(false)
-    const {park, bioDiv, hikes, notes, imgUrl, completed, id} = trip
-    const allBioDiv= bioDiv.length > 0 ? bioDiv.map((animal) => {
-        return <li key={animal}>{animal}</li>}) : 'No animals were selected for this trips watchlist'
-    const allHikes = hikes.length > 0 ? hikes.map((hike) => {
-        return <li key={hike}>{hike}</li>}) : `No hikes were selected for this trip`
+    const {park, bioDiv, hikes, notes, imgUrl, id} = trip
+    const allBioDiv= bioDiv.length > 0 ? bioDiv.map((animal) => <li key={animal}>{animal}</li>) : 'No animals were selected for this trips watchlist'
+    const allHikes = hikes.length > 0 ? hikes.map((hike) => <li key={hike}>{hike}</li>) : `No hikes were selected for this trip` 
     const allNotes = notes.length > 0 ? notes : `No notes were added to this trip`
 
     function handleClick(){
@@ -18,10 +15,7 @@ function MyTripsCard({trip}) {
             headers: {
                 'Content-type' :'application/json'
             },
-            body: JSON.stringify({
-                ...trip,
-                "completed": status
-            })
+            body: JSON.stringify({...trip, "completed": status})
         })
         .then((resp) => resp.json())
     }

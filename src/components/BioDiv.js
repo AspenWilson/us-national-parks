@@ -30,7 +30,7 @@ function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnCli
     <div>
     {selectedPark ? (
         <>
-        <h2>Select the wildlife you'd like to try and spot during your park visit!</h2>
+        <h2 style={{textAlign:'center'}}>Select the wildlife you'd like to try and spot during your park visit!</h2>
         <h3>Use the slider below to switch between common and engangered animals found in this national park</h3>
         <Radio 
             onChange={handleToggle}

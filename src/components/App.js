@@ -5,6 +5,7 @@ import BioDiv from './BioDiv'
 import ParksList from './ParksList'
 import MyTrips from './MyTrips';
 import TripContainer from './TripContainer';
+import Sources from './Sources';
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 import React, {useEffect, useState} from 'react'
@@ -198,9 +199,6 @@ function sortFilters(arr, key) {
                 handleFilter={(e, {value}) => handleFilter(e, { value: value, callback: setAnimalsFilter })}
                 onClickAnimal={(animal) => handleSelected(animal, selectedAnimals, setSelectedAnimals)}
                 onUnClickAnimal={(removedAnimal) => handleDeselect(removedAnimal, selectedAnimals, setSelectedAnimals)}
-                filterArray={filterArray}
-                sortFilters={sortFilters}
-                optionsArr={optionsArr}
                 />
             </Grid.Column>
           </Route>
@@ -223,6 +221,9 @@ function sortFilters(arr, key) {
           </Route>
         </Switch>
       </Grid>
+      <br />
+      <br />
+      <Sources/>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import {Dropdown} from 'semantic-ui-react'
 function Filter({options,handleFilter, placeholder}) {
 
   return (
-    <div>
+    <div className= 'filter'>
       <Dropdown 
         fluid 
         multiple 

@@ -20,7 +20,7 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals, setNotes, 
         <Card >
             <Card.Content textAlign='center' as='h1'>My Trip Builder</Card.Content>
         <Card.Content>
-            <Image size='medium' src={selectedPark.imgUrl} />
+            <Image size='small' style={{ display: 'block', margin: 'auto' }} src={selectedPark.imgUrl} />
             </Card.Content>
             <Card.Content style= {{padding:'5px'}}>
                 <strong>Selected Park:</strong> {selectedPark.title}
