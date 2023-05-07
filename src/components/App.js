@@ -27,14 +27,6 @@ function App() {
   const [animalsFilter, setAnimalsFilter] = useState([])
   const [notes, setNotes] = useState('')
   const location= useLocation()
-  // const [newTrip, setNewTrip] = useState({
-  //   park: '', 
-  //   imgUrl: '', 
-  //   bioDiv: '',
-  //   hikes: '', 
-  //   notes: '',
-  //   completed: false
-  // })
 
 //Parks Fetch and selectedPark
 useEffect(() => {
@@ -81,7 +73,7 @@ useEffect(() => {
   fetch(url + '/myTrips')
   .then((resp) => resp.json())
   .then((myTrips) => setMyTrips(myTrips))
-},[])
+},[myTrips])
 
 //Filters
 
@@ -153,7 +145,21 @@ function sortFilters(arr, key) {
         notes: notes,
         completed: false
     })
-    console.log('new trip', newTrip)
+    fetch(url + `/myTrips`, {
+      method: 'POST', 
+      headers: {
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify(newTrip)
+    })
+    .then((resp) => resp.json())
+    .then((addedTrip) => {
+      setMyTrips(addedTrip, ...myTrips)
+      setSelectedAnimals([])
+      setSelectedHikes([])
+      setNotes([])
+      setSelectedParkId(null)
+    })
   }
 
   return (

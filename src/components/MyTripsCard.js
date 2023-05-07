@@ -6,9 +6,9 @@ function MyTripsCard({trip}) {
     const [isCompleted, setIsCompleted] = useState(false)
     const {park, bioDiv, hikes, notes, imgUrl, completed} = trip
     const allBioDiv= bioDiv.length > 0 ? bioDiv.map((animal) => {
-        return <li>{animal}</li>}) : 'No animals were selected for this trips watchlist'
+        return <li key={animal}>{animal}</li>}) : 'No animals were selected for this trips watchlist'
     const allHikes = hikes.length > 0 ? hikes.map((hike) => {
-        return <li>{hike}</li>}) : `No hikes were selected for this trip`
+        return <li key={hike}>{hike}</li>}) : `No hikes were selected for this trip`
     const allNotes = notes.length > 0 ? notes : `No notes were added to this trip`
 
     function handleClick(){
