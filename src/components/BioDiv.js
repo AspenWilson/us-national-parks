@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Card, Radio } from 'semantic-ui-react'
 import BioDivCard from './BioDivCard'
 import Filter from './Filter'
+import ModalPopout from './ModalPopout'
 
 function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnClickAnimal, ...commonProps}) {
 
@@ -26,11 +27,32 @@ function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnCli
         <h3>No animals were found based on your criteria</h3>
     )
 
+    //Form Options and Modal setup
+
+    const textInputs = ([
+        {dataName: 'commonName',formName: 'Common Name'},
+        {dataName: 'scientificName',formName: 'Scientific Name'},
+        {dataName: 'family',formName: 'Family'},
+        {dataName: 'order',formName: 'Order'},
+        {dataName: 'imgUrl',formName: 'Image Link'},
+        {dataName: 'conservationStatus',formName: 'Conservation Status'}
+    ])
+
+    const dropdownOptions = ([
+        {dataName: 'category',formName: 'Animal Category', options:['Amphibian', 'Bird', 'Fish', 'Mammal', 'Reptile']},
+        {dataName: 'nativeness',formName: 'Animal Nativeness', options:['Native', 'Not Native', 'Unknown']},
+        {dataName: 'abundance',formName: 'Animal Abundance', options:['Abundant', 'Common', 'Endangered', 'Threatened']}
+    ])
+
+    const msg= 'animal'
+    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg}
+
   return (
     <div>
     {selectedPark ? (
         <>
-        <h2 style={{textAlign:'center'}}>Select the wildlife you'd like to try and spot during your park visit!</h2>
+        <h2 style={{textAlign:'center'}}>Select the wildlife you'd like to try and spot during your park visit! </h2>
+        <ModalPopout modalProps={modalProps} />
         <h3>Use the slider below to switch between common and engangered animals found in this national park</h3>
         <Radio 
             onChange={handleToggle}

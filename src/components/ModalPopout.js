@@ -6,18 +6,36 @@ function ModalPopout({modalProps}) {
 
     const {selectedPark, dropdownOptions, optionsArr, textInputs, msg} = modalProps
     const [open, setOpen] = useState(false)
+
+    const modalStyle = {
+        display: 'flex',
+        alignItems: 'stretch'
+    }
+    
+    const formStyle = {
+        height: '100%',
+        width: '100%',
+        display: 'flex', 
+
+    }
   return (
     <Modal
     onClose={() => setOpen(false)}
     onOpen={() => setOpen(true)}
     open={open}
-    trigger={<Button>Add a {msg}!</Button>}
+    size='large'
+    style={modalStyle}
+    trigger={<Button>Add {msg}!</Button>}
   >
-    <Modal.Header>Add a {msg} to {selectedPark.title}</Modal.Header>
+    <Modal.Header>Add {msg} to {selectedPark.title}</Modal.Header>
     <Modal.Content image>
       <Image size='medium' src={selectedPark.imgUrl} wrapped />
       <Modal.Description>
-        <NewForm dropdownOptions={dropdownOptions} textInputs={textInputs} optionsArr={optionsArr}/>
+        <NewForm 
+            dropdownOptions={dropdownOptions} 
+            textInputs={textInputs} 
+            optionsArr={optionsArr}
+            style={formStyle}/>
         <p>Ready to Submit?</p>
       </Modal.Description>
     </Modal.Content>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import BestHike from './BestHike'
 import HikeCard from './HikeCard'
 import { Card } from 'semantic-ui-react'
@@ -17,7 +17,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
         return <HikeCard hike={hike} key={hike.id} onClickHike={onClickHike} onUnclickHike={onUnclickHike} optionsArr={optionsArr}/>
     })
 
-    //Form Options
+    //Form Options and Modal setupup
 
     const textInputs = ([
       {dataName: 'name',formName: 'Trail Name'},
@@ -41,7 +41,8 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     <div>
     {selectedPark ? (
         <>
-        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! <ModalPopout modalProps={modalProps}/></h2>
+        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! </h2>
+        <ModalPopout modalProps={modalProps}/>
       <BestHike 
         bestHike={bestHike} 
         onClickHike={onClickHike} 
