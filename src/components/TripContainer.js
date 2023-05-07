@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Card, Image, Button, Form, TextArea } from 'semantic-ui-react'
 import '../TripContainer.css'
 

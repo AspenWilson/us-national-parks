@@ -79,7 +79,7 @@ useEffect(() => {
 //Filters
 
 function handleFilter(e, {value, callback}) {
-  value == '' ? callback('') : callback(value)
+  value === '' ? callback('') : callback(value)
 }
 
 const filteredList = (items, filterValue, filterCallBack) => {

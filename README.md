@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# US National Park Trip Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The perfect tool for an outdoors-enthusiast to plan their next trip to a US National Park. 
 
-## Available Scripts
+## Project Philosophy
 
-In the project directory, you can run:
+When planning a trip to a national park, it can be hard to remember all the hikes and bio-diversity you'd like to watch for during your time there. This tool makes planning your trip easy and helps you keep track of both the park trips you have on your bucket list and the trips you've completed. 
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Filter all US National Parks by State
+- View all hikes or filter by trail length
+- Toggle between the most common and endangered animals found in your selected park 
+- Save you trip to your trips list, where you can delete trips or mark them as complete and toggle between your saved and completed trips 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To begin, copy the SSH code. In your terminal, type 'git clone' and paste the copied code. Navigate to the cloned folder. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You'll run two servers, a backend and frontend, for this application. First, install json-server by typing the below in your terminal: 
+$ npm install -g json-server
 
-### `npm run build`
+To run the backend server, enter the below in your terminal:
+$ npm run server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In a new terminal tab, type the below to start the app:
+$ npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This will pull up the application and you'll be ready to start building!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You'll begin building your national parks trip on the Home tab. Scroll and select a park or use the filter bar to filter the parks by state. Clicking a park will populate that park name and photo in your 'Trip Builder' on the left:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Once you've selected a park, navigate to the Hikes tab. Here, you'lll see the hikes that have been provided for your selected park. Scroll through them all or filter them by length (in miles). You can select as many hikes as you want and they will all populate in your trip builder. If you need to remove a hike, just click on the button below it:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+After selecting your hike or hikes, you can move on to the Bio-Diversity tab. Here you can add animals to your watchlist so you can remember what to look out for. You can filter animals by category and you can toggle between commonly found vs. endangered aniamls. Selecting and deselecting these animals will add and remove them from your trip builder:
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Once you've gone through and selected the hikes and animals you want in your trip, you can add notes to your trip builder (i.e., when you'd like to go, who you want to go with, or anything other notes you'd like to keep you yourself). After doing a final check on your trip, hit the button in the trip builder to save your trip. This will clear out all the information in your trip builder and save your trip: 
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+You can view your trips in the My Trips tab and toggle between your Saved and Completed trips. You can also mark a trip as complete, or move it back to your saved trips. You can also delete trips:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Now get outside! 
 
-### `npm run build` fails to minify
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This web app was created using
+- React
+- VS Code
+- JSON server
+
+and with the sources listed at the bottom on the page. 
+
+Note: This is an SPA. 
+
+

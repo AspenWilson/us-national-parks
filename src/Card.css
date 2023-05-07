@@ -48,10 +48,11 @@
     width:100%;
     height: auto;
     bottom: 15px;
-    left: 0px;
-    right:0px;
+    left: 5px;
+    right:5px;
     padding-bottom:10px;
-    display:flex
+    display:flex;
+    justify-content: end;
     
 }
 

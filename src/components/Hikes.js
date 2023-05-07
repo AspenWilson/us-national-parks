@@ -13,7 +13,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     const options= optionsArr(sortedLengths)
 
     const allHikes = sortedHikes.map((hike) => {
-        return <HikeCard hike={hike} key={hike.id} onClickHike={onClickHike} onUnclickHike={onUnclickHike}/>
+        return <HikeCard hike={hike} key={hike.id} onClickHike={onClickHike} onUnclickHike={onUnclickHike} optionsArr={optionsArr}/>
     })
 
   return (
