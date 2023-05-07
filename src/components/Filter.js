@@ -8,7 +8,7 @@ function Filter({options,handleFilter, placeholder}) {
       <Dropdown 
         fluid 
         multiple 
-        // selection 
+        selection 
         options={options} 
         placeholder={placeholder}
         onChange={handleFilter}/>

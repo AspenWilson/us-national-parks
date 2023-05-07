@@ -4,7 +4,7 @@ import { Modal, Image, Button } from 'semantic-ui-react'
 
 function ModalPopout({modalProps}) {
 
-    const {selectedPark, dropdownOptions, optionsArr, textInputs, msg} = modalProps
+    const {selectedPark, dropdownOptions, optionsArr, textInputs, msg, endangered, commonAnimals, sortedHikes} = modalProps
     const [open, setOpen] = useState(false)
 
     const modalStyle = {
@@ -32,10 +32,10 @@ function ModalPopout({modalProps}) {
       <Image size='medium' src={selectedPark.imgUrl} wrapped />
       <Modal.Description>
         <NewForm 
-            dropdownOptions={dropdownOptions} 
-            textInputs={textInputs} 
-            optionsArr={optionsArr}
-            style={formStyle}/>
+            modalProps={modalProps}
+            style={formStyle}
+            setOpen={setOpen}
+            />
         <p>Ready to Submit?</p>
       </Modal.Description>
     </Modal.Content>
@@ -43,10 +43,6 @@ function ModalPopout({modalProps}) {
       <Button color='black' onClick={() => setOpen(false)}>
         Cancel adding this {msg}
       </Button>
-      <Button
-        onClick={() => setOpen(false)}
-        positive
-      >Add this {msg}</Button>
     </Modal.Actions>
   </Modal>
   )

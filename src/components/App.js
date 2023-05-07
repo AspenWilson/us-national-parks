@@ -122,13 +122,8 @@ function sortFilters(arr, key) {
   }
 
   function optionsArr(arr) {
-    const options= arr.map((item) => ({
-      key: item, 
-      text: item,
-      value: item
-    }))
-    return options
-  }
+    const options= arr.map((item) => ({key: item,text: item, value: item }))
+    return options }
 
   const commonProps={selectedPark, optionsArr, sortFilters, filterArray, setAnimalsFilter}
 
@@ -199,6 +194,7 @@ function sortFilters(arr, key) {
                 handleFilter={(e, {value}) => handleFilter(e, { value: value, callback: setAnimalsFilter })}
                 onClickAnimal={(animal) => handleSelected(animal, selectedAnimals, setSelectedAnimals)}
                 onUnClickAnimal={(removedAnimal) => handleDeselect(removedAnimal, selectedAnimals, setSelectedAnimals)}
+
                 />
             </Grid.Column>
           </Route>

@@ -33,7 +33,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     ])
 
     const msg = 'hike'
-    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg}
+    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg, sortedHikes}
 
 
 
@@ -41,8 +41,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     <div>
     {selectedPark ? (
         <>
-        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! </h2>
-        <ModalPopout modalProps={modalProps}/>
+        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! <ModalPopout modalProps={modalProps}/></h2>
       <BestHike 
         bestHike={bestHike} 
         onClickHike={onClickHike} 
