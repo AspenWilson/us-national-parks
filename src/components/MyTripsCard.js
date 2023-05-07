@@ -4,7 +4,7 @@ import { Card, Image, Button, Grid} from 'semantic-ui-react'
 function MyTripsCard({trip}) {
 
     const [isCompleted, setIsCompleted] = useState(false)
-    const {park, bioDiv, hikes, notes, imgUrl, completed} = trip
+    const {park, bioDiv, hikes, notes, imgUrl, completed, id} = trip
     const allBioDiv= bioDiv.length > 0 ? bioDiv.map((animal) => {
         return <li key={animal}>{animal}</li>}) : 'No animals were selected for this trips watchlist'
     const allHikes = hikes.length > 0 ? hikes.map((hike) => {
@@ -12,7 +12,18 @@ function MyTripsCard({trip}) {
     const allNotes = notes.length > 0 ? notes : `No notes were added to this trip`
 
     function handleClick(){
-        setIsCompleted(!isCompleted)
+        const status = trip.completed === false ? true : false
+        fetch(`http://localhost:3004/myTrips/${id}`,{
+            method:'PATCH',
+            headers: {
+                'Content-type' :'application/json'
+            },
+            body: JSON.stringify({
+                ...trip,
+                "completed": status
+            })
+        })
+        .then((resp) => resp.json())
     }
 
   return (
@@ -35,7 +46,7 @@ function MyTripsCard({trip}) {
                 </Grid.Column>
             </Grid>
             <Card.Content extra>
-                {isCompleted? 
+                {trip.completed === true ? 
                     <Button basic color='red' className='btn' onClick={handleClick}>Return trip to my Saved Trips</Button>
                 :
                     <Button basic color='green' className='btn' onClick={handleClick}>I've taken this trip!</Button>}
