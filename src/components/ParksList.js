@@ -17,7 +17,7 @@ function ParksList({parks, onClickPark, handleFilter, ...commonProps}) {
 
   return (
     <div> 
-        <h3>Click a park to start building your trip! Or you can filter the parks by state below.</h3>
+        <h3 style={{textAlign:'center'}}>Click a park to start building your trip! Or you can filter the parks by state below.</h3>
         <Filter 
           options={options} 
           handleFilter={handleFilter}

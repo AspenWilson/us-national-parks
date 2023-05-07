@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Button, Grid} from 'semantic-ui-react'
+import { Card, Image, Button, Grid, Icon} from 'semantic-ui-react'
 
 function MyTripsCard({trip}) {
 
@@ -16,6 +16,13 @@ function MyTripsCard({trip}) {
                 'Content-type' :'application/json'
             },
             body: JSON.stringify({...trip, "completed": status})
+        })
+        .then((resp) => resp.json())
+    }
+
+    function handleDelete (id) {
+        fetch(`http://localhost:3004/myTrips/${id}`, {
+            method: 'DELETE'
         })
         .then((resp) => resp.json())
     }
@@ -39,12 +46,19 @@ function MyTripsCard({trip}) {
                     </Card.Content>
                 </Grid.Column>
             </Grid>
+            <Grid columns={2}>
+                <Grid.Column width={12}>
             <Card.Content extra>
                 {trip.completed === true ? 
                     <Button basic color='red' className='btn' onClick={handleClick}>Return trip to my Saved Trips</Button>
                 :
                     <Button basic color='green' className='btn' onClick={handleClick}>I've taken this trip!</Button>}
             </Card.Content>
+            </Grid.Column>
+            <Grid.Column width={3}>
+                <Button negative floated='right' className='btn' onClick={() => handleDelete(id)}>Delete Trip  <Icon name='trash alternate'/></Button> 
+            </Grid.Column>
+            </Grid>
         </Card>
       
     </div>

@@ -20,7 +20,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     <div>
     {selectedPark ? (
         <>
-        <h2>Select the hikes you want to go on during your park visit!</h2>
+        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit!</h2>
       <BestHike 
         bestHike={bestHike} 
         onClickHike={onClickHike} 
@@ -40,7 +40,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
       )}
       </>
         ) : (
-            <h3>Select a park to see hikes!</h3>
+            <h3 style={{textAlign:'center'}}>Select a park to see hikes!</h3>
         )}
     </div>
   )

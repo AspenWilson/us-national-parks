@@ -35,7 +35,7 @@ function BestHike({bestHike, onClickHike, onUnclickHike}) {
             </Grid>
             </Card.Content>
             <Card.Content extra>
-                {isSelected ? <Button basic color='red' onClick={handleUnClick}>Remove from Trip</Button> : <Button basic color='green' onClick={handleClick}>Add to Trip</Button>}
+                {isSelected ? <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip</Button> : <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip</Button>}
             </Card.Content>
         </Card>
 

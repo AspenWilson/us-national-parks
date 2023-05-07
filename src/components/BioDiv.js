@@ -49,7 +49,7 @@ function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnCli
         <Card.Group className='card-group-wrapper'>{displayAnimals}</Card.Group>
         </>
         ) : (
-            <h3>Select a park to what kinds of wildlife you can see there and add them to your watchlist!</h3>
+            <h3 style={{textAlign:'center'}}>Select a park to what kinds of wildlife you can see there and add them to your watchlist!</h3>
         )}
     </div>
   )
