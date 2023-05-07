@@ -5,9 +5,8 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
 
     const [isSelected, setIsSelected] = useState(false)
     const [ editMode, setEditMode ] = useState(false)
-    const optionsList = ['>1', '1 - 5', '3 - 5', '5 - 10','10 - 50']
+    const optionsList = ['<1', '1 - 5', '3 - 5', '5 - 10','10 - 50']
     const options = optionsArr(optionsList)
-    const [seletedLength, setSelectedLength] = useState('')
 
     function handleClick () {
         setIsSelected(!isSelected)
@@ -19,15 +18,22 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
         onUnclickHike(hike)
     }
 
-    function handleEdit(e, id) {
+    function handleEdit(id, value) {
         setEditMode(!editMode)
-        setSelectedLength(e.target.innerText)
-        console.log(id, seletedLength)
+        hike.distance = value
+        console.log(id, value)
+        fetch(`http://localhost:3004/allHikes/${id}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-type': 'application/json'
+            }, 
+            body: JSON.stringify({...hike, "distance": value})
+        })
+        .then((resp) => resp.json())
     }
 
     function handleClickEdit () {
         setEditMode(!editMode)
-        console.log(editMode)
     }
 
   return (
@@ -53,10 +59,10 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
                   sytle={{width: '75%'}}
                   options={options} 
                   placeholder='Choose new length'
-                  onChange={(e) => handleEdit(e, hike.id)}
+                  onChange={(e) => handleEdit(hike.id, e.target.innerText)}
                   />
                   </div> :
-                <Button circular icon='edit' className='btn' onClick={handleClickEdit} sytle={{width: '75%'}}><small><Icon name='edit' /> Edit Length</small></Button> 
+                <Button circular className='btn' onClick={handleClickEdit} sytle={{width: '75%'}}><small><Icon name='edit' /> Edit Length</small></Button> 
                 }
                 </Card.Content>
              <Card.Content extra>
