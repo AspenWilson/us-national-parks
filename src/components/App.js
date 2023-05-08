@@ -28,6 +28,7 @@ function App() {
   const [animalsFilter, setAnimalsFilter] = useState([])
   const [notes, setNotes] = useState('')
   const location= useLocation()
+  const [formValues, setFormValues] = useState({})
 
 //Parks Fetch and selectedPark
 useEffect(() => {
@@ -101,31 +102,6 @@ function handleSelectedPark(park) {
   setSelectedAnimals([])
 }
 
-//DRY Functions
-
-function filterArray (items, filterKey){
-  return Array.from(new Set(items.map((item) => item[filterKey])))
-}
-
-function sortFilters(arr, key) {
-  const sortFn = key
-    ? (a, b) => {
-      if (a[key] < b[key]) {return -1;}
-      if (a[key] > b[key]) {return 1;}
-      return 0; }
-    : (a, b) => {
-      if (a < b) {return -1;}
-      if (a > b) {return 1;}
-      return 0;};
-  const newSortedArray = arr.sort(sortFn);
-  return newSortedArray;
-  }
-
-  function optionsArr(arr) {
-    const options= arr.map((item) => ({key: item,text: item, value: item }))
-    return options }
-
-  const commonProps={selectedPark, optionsArr, sortFilters, filterArray, setAnimalsFilter}
 
   //POST functions
 
@@ -158,6 +134,67 @@ function sortFilters(arr, key) {
     })
   }
 
+  function handleTextChange(e, input){
+    setFormValues((prevData) => ({
+      ...prevData, 
+      [input]: e.target.value
+    }))
+  }
+
+  function handleDropDownChange(e, input, {value}){
+    setFormValues((prevData) => ({
+      ...prevData, 
+      [input]: value
+    }))
+  }
+
+  function handleNewItemSubmit(){
+    const newEntry= {
+      ...formValues,
+      parkId: selectedPark.id,
+      park: selectedPark.title
+    }
+    fetch(url+'/allHikes', {
+      method:'POST',
+      headers: {
+        'Content-type' :'application/json'
+      },
+      body: JSON.stringify(newEntry)
+    })
+    .then((resp) => resp.json())
+    .then((newHike) => {
+      setAllHikes([newHike,...allHikes])
+    })
+    setFormValues({})
+  }
+
+  //DRY Functions
+
+function filterArray (items, filterKey){
+  return Array.from(new Set(items.map((item) => item[filterKey])))
+}
+
+function sortFilters(arr, key) {
+  const sortFn = key
+    ? (a, b) => {
+      if (a[key] < b[key]) {return -1;}
+      if (a[key] > b[key]) {return 1;}
+      return 0; }
+    : (a, b) => {
+      if (a < b) {return -1;}
+      if (a > b) {return 1;}
+      return 0;};
+  const newSortedArray = arr.sort(sortFn);
+  return newSortedArray;
+  }
+
+  function optionsArr(arr) {
+    const options= arr.map((item) => ({key: item,text: item, value: item }))
+    return options }
+
+
+  const commonProps={selectedPark, formValues, optionsArr, sortFilters, filterArray, handleNewItemSubmit, handleTextChange, handleDropDownChange}
+
   return (
     <div>
       <NavBar />
@@ -182,6 +219,8 @@ function sortFilters(arr, key) {
                 onClickHike={(hike) => handleSelected(hike, selectedHikes, setSelectedHikes)}
                 onUnclickHike={(removedHike) => handleDeselect(removedHike, selectedHikes, setSelectedHikes)}
                 handleFilter={(e, {value}) => handleFilter(e, { value: value, callback: setHikesFilter })}
+                setFormValues={setFormValues}
+                formValues={formValues}
               />
             </Grid.Column>
           </Route>
@@ -194,7 +233,8 @@ function sortFilters(arr, key) {
                 handleFilter={(e, {value}) => handleFilter(e, { value: value, callback: setAnimalsFilter })}
                 onClickAnimal={(animal) => handleSelected(animal, selectedAnimals, setSelectedAnimals)}
                 onUnClickAnimal={(removedAnimal) => handleDeselect(removedAnimal, selectedAnimals, setSelectedAnimals)}
-
+                setFormValues={setFormValues}
+                formValues={formValues}
                 />
             </Grid.Column>
           </Route>

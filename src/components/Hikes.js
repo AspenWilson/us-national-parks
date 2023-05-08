@@ -5,10 +5,10 @@ import { Card } from 'semantic-ui-react'
 import Filter from './Filter'
 import ModalPopout from './ModalPopout'
 
-function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...commonProps}) {
+function Hikes({bestHike, hikes, onClickHike, onUnclickHike, setFormValues, formValues,handleFilter, ...commonProps}) {
 
-    const {selectedPark, optionsArr, sortFilters, filterArray} = {...commonProps}
-    const allLengths = filterArray (hikes, 'distance')
+    const {selectedPark, optionsArr, sortFilters, filterArray, handleNewItemSubmit, handleTextChange, handleDropDownChange} = {...commonProps}
+    const allLengths = filterArray(hikes, 'distance')
     const sortedLengths = sortFilters(allLengths)
     const sortedHikes = sortFilters(hikes, 'name')
     const options= optionsArr(sortedLengths)
@@ -33,7 +33,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     ])
 
     const msg = 'hike'
-    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg, sortedHikes}
+    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg, sortedHikes, handleNewItemSubmit, handleTextChange,handleDropDownChange}
 
 
 
@@ -41,7 +41,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, handleFilter, ...co
     <div>
     {selectedPark ? (
         <>
-        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! <ModalPopout modalProps={modalProps}/></h2>
+        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! <ModalPopout {...modalProps} setFormValues={setFormValues} formValues={formValues}/></h2>
       <BestHike 
         bestHike={bestHike} 
         onClickHike={onClickHike} 

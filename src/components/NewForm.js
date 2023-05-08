@@ -1,68 +1,26 @@
 import React, {useState} from 'react'
 import { Form } from 'semantic-ui-react'
 
-function NewForm({modalProps, formStyle, setOpen}) {
+function NewForm({formStyle, setOpen, setFormValues, formValues, ...modalProps}) {
 
-  const {selectedPark, dropdownOptions, optionsArr, textInputs, msg, endangered, commonAnimals, allHikes} = modalProps
-  const [formValues, setFormValues] = useState({})
-  const hikeUrl = `http://localhost:3004/allHikes`
-  const commonUrl= `http://localhost:3004/bioDiv`
-  const rareUrl = `http://localhost:3004/endangered`
-  const newEntry= ({
-    ...formValues,
-    parkId: selectedPark.id,
-    park: selectedPark.title
-  })
+  const {dropdownOptions, optionsArr, textInputs,handleNewItemSubmit, handleTextChange, handleDropDownChange} = {...modalProps}
 
-  function fetchCall(url, list, setter){
-    fetch(url ,{
-      method:'POST',
-      header:{
-        'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify()
-    })
-    .then((respn) => respn.json())
-    .then ((newItem) => {
-      setter([...list, newItem])
-      setFormValues({})
-    })
-  }
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault()
     setOpen(false)
-    console.log('new entry', newEntry)
-    if (msg === 'hike'){
-      console.log({
-        url: hikeUrl,
-        list: allHikes
-      })
-    } else if (formValues.abundance.includes('Endangered') || formValues.abundance.includes('Threatened')){
-      console.log({
-        url: rareUrl,
-        list: endangered
-      })
-    }else {
-      console.log({
-        url: commonUrl,
-        list: commonAnimals
-      })
-    }
+    handleNewItemSubmit()
   }
 
 
     const allTextInputs= textInputs.map((textInput) => {
-         return <Form.Field fluid style={{width: '100%'}}>
+         return <Form.Field style={{width: '100%'}} key={textInput.dataName}>
           <label>{textInput.formName} </label>
-          <input 
+          <input
+            fluid 
             name={textInput.dataName} 
             placeholder={textInput.formName} 
-            onChange={(e) => 
-              setFormValues((prevData) => ({
-                ...prevData,
-                [textInput.dataName]: e.target.value
-              }))} 
+            onChange={(e) => handleTextChange(e, textInput.dataName)}
             />
           </Form.Field>
 
@@ -76,16 +34,12 @@ function NewForm({modalProps, formStyle, setOpen}) {
                     value={formValues[dropdown.dataName] || ''}
                     options={options}
                     placeholder={dropdown.formName}
-                    onChange={(e, {value}) => 
-                      setFormValues((prevData) => ({
-                        ...prevData,
-                        [dropdown.dataName]:value
-                      }))}
+                    onChange={(e,{value}) => handleDropDownChange(e, dropdown.dataName, {value})}
                 />
 
     })
     return (
-        <Form style={formStyle} onSubmit={handleSubmit}>
+        <Form style={formStyle} onSubmit={(e) => handleSubmit(e)}>
           <Form.Group 
           widths='equal'
           >

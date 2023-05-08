@@ -4,9 +4,9 @@ import BioDivCard from './BioDivCard'
 import Filter from './Filter'
 import ModalPopout from './ModalPopout'
 
-function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnClickAnimal, ...commonProps}) {
+function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, setFormValues, formValues, onUnClickAnimal, ...commonProps}) {
 
-    const {selectedPark, optionsArr, sortFilters, filterArray, setBioDiv,} = {...commonProps}
+    const {selectedPark, optionsArr, sortFilters, filterArray, handleNewItemSubmit} = {...commonProps}
     const [endangeredToggle, setEndangered] = useState(false)
 
     function handleToggle() {
@@ -45,13 +45,13 @@ function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnCli
     ])
 
     const msg= 'animal'
-    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg, endangered, commonAnimals}
+    const modalProps = {selectedPark, dropdownOptions, optionsArr, textInputs, msg, endangered, commonAnimals, handleNewItemSubmit}
 
   return (
     <div>
     {selectedPark ? (
         <>
-        <h2 style={{textAlign:'center'}}>Select the wildlife you'd like to try and spot during your park visit! <ModalPopout modalProps={modalProps} /></h2>
+        <h2 style={{textAlign:'center'}}>Select the wildlife you'd like to try and spot during your park visit! <ModalPopout {...modalProps} setFormValues={setFormValues} formValues={formValues}/></h2>
         <h3>Use the slider below to switch between common and engangered animals found in this national park</h3>
         <Radio 
             onChange={handleToggle}

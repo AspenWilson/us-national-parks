@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import NewForm from './NewForm'
 import { Modal, Image, Button } from 'semantic-ui-react'
 
-function ModalPopout({modalProps}) {
+function ModalPopout({setFormValues, formValues, ...modalProps}) {
 
-    const {selectedPark, dropdownOptions, optionsArr, textInputs, msg, endangered, commonAnimals, sortedHikes} = modalProps
+    const {selectedPark, dropdownOptions, optionsArr, textInputs, msg, endangered, commonAnimals, sortedHikes, handleNewItemSubmit, handleTextChange, handleDropDownChange} = {...modalProps}
     const [open, setOpen] = useState(false)
 
     const modalStyle = {
@@ -32,9 +32,11 @@ function ModalPopout({modalProps}) {
       <Image size='medium' src={selectedPark.imgUrl} wrapped />
       <Modal.Description>
         <NewForm 
-            modalProps={modalProps}
+            {...modalProps}
             style={formStyle}
             setOpen={setOpen}
+            setFormValue={setFormValues}
+            formValues={formValues}
             />
         <p>Ready to Submit?</p>
       </Modal.Description>
