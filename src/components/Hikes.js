@@ -17,7 +17,7 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, setFormValues, form
         return <HikeCard hike={hike} key={hike.id} onClickHike={onClickHike} onUnclickHike={onUnclickHike} optionsArr={optionsArr}/>
     })
 
-    //Form Options and Modal setupup
+    //Form Options and Modal setup
 
     const textInputs = ([
       {dataName: 'name',formName: 'Trail Name'},
@@ -40,8 +40,8 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, setFormValues, form
   return (
     <div>
     {selectedPark ? (
-        <>
-        <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! <ModalPopout {...modalProps} setFormValues={setFormValues} formValues={formValues}/></h2>
+      <>
+      <h2 style={{textAlign:'center'}}>Select the hikes you want to go on during your park visit! <ModalPopout {...modalProps} setFormValues={setFormValues} formValues={formValues}/></h2>
       <BestHike 
         bestHike={bestHike} 
         onClickHike={onClickHike} 
@@ -60,8 +60,8 @@ function Hikes({bestHike, hikes, onClickHike, onUnclickHike, setFormValues, form
         <h3>No hikes found for {selectedPark.title}</h3>
       )}
       </>
-        ) : (
-          <h3 style={{textAlign:'center'}}>Select a park to see hikes!</h3>
+      ) : (
+      <h3 style={{textAlign:'center'}}>Select a park to see hikes!</h3>
     )}
     </div>
   )

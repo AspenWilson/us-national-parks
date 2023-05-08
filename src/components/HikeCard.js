@@ -21,7 +21,6 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
     function handleEdit(id, value) {
         setEditMode(!editMode)
         hike.distance = value
-        console.log(id, value)
         fetch(`http://localhost:3004/allHikes/${id}`,{
             method: 'PATCH',
             headers: {
@@ -46,8 +45,7 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
                 <Card.Description style= {{padding:'5px'}}><strong>Trail Type:</strong> {hike.type}</Card.Description>
                 <Card.Description style= {{padding:'5px'}}><strong>Seasonal Use?</strong> {hike.seasonal}</Card.Description>
                 {hike.seasonal === "Yes" ? 
-                    <Card.Description style= {{padding:'5px'}}><strong>Seasonal Use Details:</strong> {hike.seasonalDetails}</Card.Description> : null
-                }
+                    <Card.Description style= {{padding:'5px'}}><strong>Seasonal Use Details:</strong> {hike.seasonalDetails}</Card.Description> : null}
             </Card.Content>
             <Card.Content style={{textAlign: 'center'}}>
             {editMode ? 
@@ -60,11 +58,10 @@ function HikeCard({hike, onClickHike, onUnclickHike, optionsArr}) {
                   placeholder='Choose new length'
                   onChange={(e) => handleEdit(hike.id, e.target.innerText)}
                   />
-                  </div> :
-                <Button circular className='btn' onClick={handleClickEdit} sytle={{width: '75%'}}><small><Icon name='edit' /> Edit Length</small></Button> 
-                }
-                </Card.Content>
-             <Card.Content extra>
+                </div> :
+                <Button circular className='btn' onClick={handleClickEdit} sytle={{width: '75%'}}><small><Icon name='edit' /> Edit Length</small></Button> }
+            </Card.Content>
+            <Card.Content extra>
                 {isSelected ? 
                 <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip</Button> : 
                 <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip</Button>}

@@ -5,11 +5,9 @@ import { Radio } from 'semantic-ui-react'
 function MyTrips({myTrips}) {
 
   const [completedToggle, setCompletedToggle] = useState(false)
-
   const savedTrips = myTrips.filter((trip) => trip.completed === false)
   const completedTrips = myTrips.filter((trip) => trip.completed === true)
   const displayTrips = completedToggle ? completedTrips : savedTrips
-
 
   const allTrips = displayTrips.map((trip) => {
     return <MyTripsCard key={trip.id} trip={trip} />
@@ -18,6 +16,7 @@ function MyTrips({myTrips}) {
   function handleToggle() {
     setCompletedToggle(!completedToggle)
   }
+
   return (
     <div>
       <h2>Your Saved Trips</h2>
@@ -28,7 +27,7 @@ function MyTrips({myTrips}) {
         checked={completedToggle}
         slider
       />
-      <br />
+      <br/>
       <br/>
       {allTrips}
     </div>

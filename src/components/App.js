@@ -47,19 +47,19 @@ useEffect(() => {
     fetch(url + '/bioDiv').then((resp) => resp.json()),
     fetch(url + '/endangered').then((resp) => resp.json()),
   ])
-    .then(([hikes, allHikes, animals, endangeredAnimals]) => {
-      const parkBestHike = hikes.find((hike) => hike.parkId === selectedParkId)
+  .then(([hikes, allHikes, animals, endangeredAnimals]) => {
+    const parkBestHike = hikes.find((hike) => hike.parkId === selectedParkId)
       setBestHike(parkBestHike)
 
-      const parkAllHikes = allHikes.filter((hike) => hike.parkId === selectedParkId)
+    const parkAllHikes = allHikes.filter((hike) => hike.parkId === selectedParkId)
       setAllHikes(parkAllHikes)
 
-      const commonAnimals = animals.filter((animal) => animal.parkId === selectedParkId)
+    const commonAnimals = animals.filter((animal) => animal.parkId === selectedParkId)
       setBioDiv(commonAnimals)
 
-      const endangered = endangeredAnimals.filter((animal) => animal.parkId === selectedParkId)
+    const endangered = endangeredAnimals.filter((animal) => animal.parkId === selectedParkId)
       setEndangered(endangered)
-    })
+  })
 }, [selectedParkId])
 
 
@@ -70,7 +70,6 @@ useEffect(() => {
 },[location])
 
 //MyTrips Fetch
-
 useEffect(() => {
   fetch(url + '/myTrips')
   .then((resp) => resp.json())
@@ -78,7 +77,6 @@ useEffect(() => {
 },[myTrips])
 
 //Filters
-
 function handleFilter(e, {value, callback}) {
   value === '' ? callback('') : callback(value)
 }
@@ -102,9 +100,7 @@ function handleSelectedPark(park) {
   setSelectedAnimals([])
 }
 
-
   //POST functions
-
   function handleSubmit (e){
     e.preventDefault()
     const tripHikes= selectedHikes.map((hike) => hike.name)
@@ -169,7 +165,6 @@ function handleSelectedPark(park) {
   }
 
   //DRY Functions
-
 function filterArray (items, filterKey){
   return Array.from(new Set(items.map((item) => item[filterKey])))
 }
@@ -190,8 +185,8 @@ function sortFilters(arr, key) {
 
   function optionsArr(arr) {
     const options= arr.map((item) => ({key: item,text: item, value: item }))
-    return options }
-
+    return options 
+  }
 
   const commonProps={selectedPark, formValues, optionsArr, sortFilters, filterArray, handleNewItemSubmit, handleTextChange, handleDropDownChange}
 
@@ -235,7 +230,7 @@ function sortFilters(arr, key) {
                 onUnClickAnimal={(removedAnimal) => handleDeselect(removedAnimal, selectedAnimals, setSelectedAnimals)}
                 setFormValues={setFormValues}
                 formValues={formValues}
-                />
+              />
             </Grid.Column>
           </Route>
           <Route exact path="/my-trips">

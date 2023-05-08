@@ -28,25 +28,23 @@ function BioDivCard({animal, onClickAnimal, onUnClickAnimal}) {
                 alt={animal.name}
             />
             <Card.Content>
-            <Grid columns={2}>
-                <Grid.Column width={8}>
-                    <Card.Description style= {{padding:'5px'}}><strong>Order:</strong> {animal.order}</Card.Description>
-                    <Card.Description style= {{padding:'5px'}}><strong>Family:</strong> {animal.family}</Card.Description>
-                    <Card.Description style= {{padding:'5px'}}><strong>Scientific Name:</strong> {animal.scientificName}</Card.Description>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                    <Card.Description style= {{padding:'5px'}}><strong>Nativeness:</strong> {animal.nativeness}</Card.Description>
-                    <Card.Description style= {{padding:'5px'}}><strong>Abundance:</strong> {animal.abundance}</Card.Description>
-                        {animal.conservationStatus.length > 1 ? 
-                            <Card.Description style= {{padding:'5px'}}><strong>Conservation Status:</strong> {animal.conservationStatus}</Card.Description> : null
-                        }
-                </Grid.Column>
-            </Grid>
+                <Grid columns={2}>
+                    <Grid.Column width={8}>
+                        <Card.Description style= {{padding:'5px'}}><strong>Order:</strong> {animal.order}</Card.Description>
+                        <Card.Description style= {{padding:'5px'}}><strong>Family:</strong> {animal.family}</Card.Description>
+                        <Card.Description style= {{padding:'5px'}}><strong>Scientific Name:</strong> {animal.scientificName}</Card.Description>
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                        <Card.Description style= {{padding:'5px'}}><strong>Nativeness:</strong> {animal.nativeness}</Card.Description>
+                        <Card.Description style= {{padding:'5px'}}><strong>Abundance:</strong> {animal.abundance}</Card.Description>
+                            {animal.conservationStatus.length > 1 ? 
+                                <Card.Description style= {{padding:'5px'}}><strong>Conservation Status:</strong> {animal.conservationStatus}</Card.Description> : null}
+                    </Grid.Column>
+                </Grid>
             </Card.Content>
             <Card.Content extra>
                 {isSelected ? 
-                <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip Watchlist</Button> 
-                : 
+                <Button basic color='red' onClick={handleUnClick} className='btn'>Remove from Trip Watchlist</Button> : 
                 <Button basic color='green' onClick={handleClick} className='btn'>Add to Trip Watchlist</Button>}
             </Card.Content>
         </Card>

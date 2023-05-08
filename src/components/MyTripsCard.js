@@ -36,31 +36,26 @@ function MyTripsCard({trip}) {
                     <Image style={{padding:'5px'}} size='medium' src={imgUrl} />
                 </Grid.Column>
                 <Grid.Column width={6}>
-                    <Card.Content style= {{padding:'5px'}}>Selected Hike(s): <ul>{allHikes}</ul>
-                    </Card.Content>
-                    <Card.Content style= {{padding:'5px'}}>Note for this trip: <ul>{allNotes}</ul>
-                </Card.Content>
+                    <Card.Content style= {{padding:'5px'}}>Selected Hike(s): <ul>{allHikes}</ul> </Card.Content>
+                    <Card.Content style= {{padding:'5px'}}>Note for this trip: <ul>{allNotes}</ul> </Card.Content>
                 </Grid.Column>
                 <Grid.Column width={5}>
-                <Card.Content style= {{padding:'5px'}}> Bio-Diversity Watchlist: <ul>{allBioDiv}</ul>
-                    </Card.Content>
+                <Card.Content style= {{padding:'5px'}}> Bio-Diversity Watchlist: <ul>{allBioDiv}</ul> </Card.Content>
                 </Grid.Column>
             </Grid>
             <Grid columns={2}>
                 <Grid.Column width={12}>
-            <Card.Content extra>
-                {trip.completed === true ? 
-                    <Button basic color='red' className='btn' onClick={handleClick}>Return trip to my Saved Trips</Button>
-                :
-                    <Button basic color='green' className='btn' onClick={handleClick}>I've taken this trip!</Button>}
-            </Card.Content>
-            </Grid.Column>
-            <Grid.Column width={3}>
-                <Button negative floated='right' className='btn' onClick={() => handleDelete(id)}>Delete Trip  <Icon name='trash alternate'/></Button> 
-            </Grid.Column>
+                    <Card.Content extra>
+                        {trip.completed === true ? 
+                            <Button basic color='red' className='btn' onClick={handleClick}>Return trip to my Saved Trips</Button> :
+                            <Button basic color='green' className='btn' onClick={handleClick}>I've taken this trip!</Button>}
+                    </Card.Content>
+                </Grid.Column>
+                <Grid.Column width={3}>
+                    <Button negative floated='right' className='btn' onClick={() => handleDelete(id)}>Delete Trip  <Icon name='trash alternate'/></Button> 
+                </Grid.Column>
             </Grid>
         </Card>
-      
     </div>
   )
 }

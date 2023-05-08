@@ -10,18 +10,17 @@ function Park({park, onClickPark}) {
   return (
     <div className='park-card'>
         <Card raised onClick= {handleClick}>
-        <header style= {{padding:'5px', textAlign:'center'}}>{park.title}, <small>{park.state}</small></header>
-        <Card.Content style= {{padding:'5px'}}>
+            <header style= {{padding:'5px', textAlign:'center'}}>{park.title}, <small>{park.state}</small></header>
+            <Card.Content style= {{padding:'5px'}}>
             <Image size='medium' src={park.imgUrl} alt={park.title}/>
-        </Card.Content>
+            </Card.Content>
             <p style= {{padding:'5px'}} as='p'>{park.description}</p>
             <Card.Content extra as='small' style= {{padding:'5px'}}>
-            {`Established: ${park.est}`} <br />
-            {`Size: ${park.acres} acres`} <br />
-            {`Yearly visitors: ${park.visitors}`}
+                {`Established: ${park.est}`} <br />
+                {`Size: ${park.acres} acres`} <br />
+                {`Yearly visitors: ${park.visitors}`}
             </Card.Content>
         </Card>
-
     </div>
   )
 }

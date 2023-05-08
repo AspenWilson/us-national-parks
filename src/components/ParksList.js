@@ -24,8 +24,8 @@ function ParksList({parks, onClickPark, handleFilter, ...commonProps}) {
           placeholder='Select state to filter by' 
         />
         <br />
-      <Card.Group className='card-group-wrapper'>{allParks}</Card.Group>
-      </div>
+        <Card.Group className='card-group-wrapper'>{allParks}</Card.Group>
+    </div>
   )
 }
 

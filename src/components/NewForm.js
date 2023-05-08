@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Form } from 'semantic-ui-react'
 
 function NewForm({formStyle, setOpen, setFormValues, formValues, ...modalProps}) {
@@ -15,15 +15,14 @@ function NewForm({formStyle, setOpen, setFormValues, formValues, ...modalProps})
 
     const allTextInputs= textInputs.map((textInput) => {
          return <Form.Field style={{width: '100%'}} key={textInput.dataName}>
-          <label>{textInput.formName} </label>
-          <input
-            fluid 
-            name={textInput.dataName} 
-            placeholder={textInput.formName} 
-            onChange={(e) => handleTextChange(e, textInput.dataName)}
-            />
-          </Form.Field>
-
+                  <label>{textInput.formName} </label>
+                  <input
+                    fluid 
+                    name={textInput.dataName} 
+                    placeholder={textInput.formName} 
+                    onChange={(e) => handleTextChange(e, textInput.dataName)}
+                  />
+                </Form.Field>
     })
 
     const allDropDownOptions = dropdownOptions.map((dropdown) => {
@@ -36,20 +35,18 @@ function NewForm({formStyle, setOpen, setFormValues, formValues, ...modalProps})
                     placeholder={dropdown.formName}
                     onChange={(e,{value}) => handleDropDownChange(e, dropdown.dataName, {value})}
                 />
-
-    })
-    return (
-        <Form style={formStyle} onSubmit={(e) => handleSubmit(e)}>
-          <Form.Group 
-          widths='equal'
-          >
-            {allTextInputs}
-            </Form.Group>
-            <Form.Group>
-            {allDropDownOptions}
-          </Form.Group>
-          <Form.Button fluid>Submit</Form.Button>
-        </Form>
+      })
+    
+  return (
+    <Form style={formStyle} onSubmit={(e) => handleSubmit(e)}>
+      <Form.Group widths='equal'>
+        {allTextInputs}
+      </Form.Group>
+      <Form.Group>
+        {allDropDownOptions}
+      </Form.Group>
+      <Form.Button fluid>Submit</Form.Button>
+    </Form>
   )
 }
 

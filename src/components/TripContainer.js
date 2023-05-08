@@ -17,10 +17,10 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals, setNotes, 
   return (
     <div className='sticky-wrapper'>
     {selectedPark ? (
-        <Card >
+        <Card>
             <Card.Content textAlign='center' as='h1'>My Trip Builder</Card.Content>
-        <Card.Content>
-            <Image size='small' style={{ display: 'block', margin: 'auto' }} src={selectedPark.imgUrl} />
+            <Card.Content>
+                <Image size='small' style={{ display: 'block', margin: 'auto' }} src={selectedPark.imgUrl} />
             </Card.Content>
             <Card.Content style= {{padding:'5px'}}>
                 <strong>Selected Park:</strong> {selectedPark.title}
@@ -40,16 +40,16 @@ function TripContainer({selectedPark, selectedHikes, selectedAnimals, setNotes, 
                 </Form>
             </Card.Content>
         </Card>
-  ) : (
-    <Card>
-        <Card.Content textAlign='center' as='h1'>My Trip Builder</Card.Content>
-        <Card.Content>
-            <Image size='medium' src='https://lp-cms-production.imgix.net/2021-09/shutterstock_1525719143.jpg'/>
-        </Card.Content>
-        <Card.Description style= {{padding:'5px'}}>Select a park to start building your trip!</Card.Description>
-    </Card>
-  )}
-  </div>
+    ) : (
+        <Card>
+            <Card.Content textAlign='center' as='h1'>My Trip Builder</Card.Content>
+            <Card.Content>
+                <Image size='medium' src='https://lp-cms-production.imgix.net/2021-09/shutterstock_1525719143.jpg'/>
+            </Card.Content>
+            <Card.Description style= {{padding:'5px'}}>Select a park to start building your trip!</Card.Description>
+        </Card>
+    )}
+    </div>
   )
 }
 export default  TripContainer
