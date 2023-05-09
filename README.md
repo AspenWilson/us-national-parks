@@ -45,11 +45,11 @@ After selecting your hike or hikes, you can move on to the Bio-Diversity tab. He
 
 Once you've gone through and selected the hikes and animals you want in your trip, you can add notes to your trip builder (i.e., when you'd like to go, who you want to go with, or anything other notes you'd like to keep you yourself). After doing a final check on your trip, hit the button in the trip builder to save your trip. This will clear out all the information in your trip builder and save your trip: 
 
-![](https://github.com/AspenWilson/us-national-parks/blob/main/Save%20Trip.gif)
+![](https://github.com/AspenWilson/us-national-parks/blob/main/SaveTrip.gif)
 
 You can view your trips in the My Trips tab and toggle between your Saved and Completed trips. You can also mark a trip as complete, or move it back to your saved trips. You can also delete trips:
 
-![](https://github.com/AspenWilson/us-national-parks/blob/main/My%20Trips.gif)
+![](https://github.com/AspenWilson/us-national-parks/blob/main/MyTrips.gif)
 
 Now get outside! 
 
