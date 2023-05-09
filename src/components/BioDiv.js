@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import { Card, Radio } from 'semantic-ui-react'
 import BioDivCard from './BioDivCard'
 import Filter from './Filter'
-import ModalPopout from './ModalPopout'
 
 function BioDiv({commonAnimals, endangered, handleFilter, onClickAnimal, onUnClickAnimal, ...commonProps}) {
 

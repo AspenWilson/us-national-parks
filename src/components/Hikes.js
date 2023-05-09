@@ -5,9 +5,9 @@ import { Card } from 'semantic-ui-react'
 import Filter from './Filter'
 import ModalPopout from './ModalPopout'
 
-function Hikes({bestHike, hikes, onClickHike, onUnclickHike, setFormValues, formValues,handleFilter, ...commonProps}) {
+function Hikes({bestHike, hikes, onClickHike, onUnclickHike, setFormValues, handleFilter, ...commonProps}) {
 
-    const {selectedPark, optionsArr, sortFilters, filterArray, handleNewItemSubmit, handleTextChange, handleDropDownChange} = {...commonProps}
+    const {selectedPark, optionsArr, sortFilters, filterArray, handleNewItemSubmit, handleTextChange, handleDropDownChange, formValues} = {...commonProps}
     const allLengths = filterArray(hikes, 'distance')
     const sortedLengths = sortFilters(allLengths)
     const sortedHikes = sortFilters(hikes, 'name')

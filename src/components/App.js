@@ -100,7 +100,7 @@ function handleSelectedPark(park) {
   setSelectedAnimals([])
 }
 
-  //POST functions
+  //POST functions and formValue functions
   function handleSubmit (e){
     e.preventDefault()
     const tripHikes= selectedHikes.map((hike) => hike.name)
@@ -215,7 +215,6 @@ function sortFilters(arr, key) {
                 onUnclickHike={(removedHike) => handleDeselect(removedHike, selectedHikes, setSelectedHikes)}
                 handleFilter={(e, {value}) => handleFilter(e, { value: value, callback: setHikesFilter })}
                 setFormValues={setFormValues}
-                formValues={formValues}
               />
             </Grid.Column>
           </Route>
@@ -228,8 +227,6 @@ function sortFilters(arr, key) {
                 handleFilter={(e, {value}) => handleFilter(e, { value: value, callback: setAnimalsFilter })}
                 onClickAnimal={(animal) => handleSelected(animal, selectedAnimals, setSelectedAnimals)}
                 onUnClickAnimal={(removedAnimal) => handleDeselect(removedAnimal, selectedAnimals, setSelectedAnimals)}
-                setFormValues={setFormValues}
-                formValues={formValues}
               />
             </Grid.Column>
           </Route>

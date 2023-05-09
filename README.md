@@ -33,24 +33,23 @@ This will pull up the application and you'll be ready to start building!
 
 You'll begin building your national parks trip on the Home tab. Scroll and select a park or use the filter bar to filter the parks by state. Clicking a park will populate that park name and photo in your 'Trip Builder' on the left:
 
+![](https://vscode.dev/github/AspenWilson/us-national-parks/blob/ddf82063768f9196fcb1d724c08d89eab9c5d7d4/Home.gif)
 
+Once you've selected a park, navigate to the Hikes tab. Here, you'lll see the hikes that have been provided for your selected park. Scroll through them all or filter them by length (in miles). You can select as many hikes as you want and they will all populate in your trip builder. You can edit the lengths of the existing hikes and add a hike to your selected park here. If you need to remove a hike from your trip, just click on the button below it:
 
-
-
-Once you've selected a park, navigate to the Hikes tab. Here, you'lll see the hikes that have been provided for your selected park. Scroll through them all or filter them by length (in miles). You can select as many hikes as you want and they will all populate in your trip builder. If you need to remove a hike, just click on the button below it:
-
-
+![](https://vscode.dev/github/AspenWilson/us-national-parks/blob/ddf82063768f9196fcb1d724c08d89eab9c5d7d4/Hikes.gif)
 
 After selecting your hike or hikes, you can move on to the Bio-Diversity tab. Here you can add animals to your watchlist so you can remember what to look out for. You can filter animals by category and you can toggle between commonly found vs. endangered aniamls. Selecting and deselecting these animals will add and remove them from your trip builder:
 
+![](https://vscode.dev/github/AspenWilson/us-national-parks/blob/ddf82063768f9196fcb1d724c08d89eab9c5d7d4/BioDiv.gif)
 
 Once you've gone through and selected the hikes and animals you want in your trip, you can add notes to your trip builder (i.e., when you'd like to go, who you want to go with, or anything other notes you'd like to keep you yourself). After doing a final check on your trip, hit the button in the trip builder to save your trip. This will clear out all the information in your trip builder and save your trip: 
 
-
+![](https://vscode.dev/github/AspenWilson/us-national-parks/blob/ddf82063768f9196fcb1d724c08d89eab9c5d7d4/Save Trip.gif)
 
 You can view your trips in the My Trips tab and toggle between your Saved and Completed trips. You can also mark a trip as complete, or move it back to your saved trips. You can also delete trips:
 
-
+![](https://vscode.dev/github/AspenWilson/us-national-parks/blob/ddf82063768f9196fcb1d724c08d89eab9c5d7d4/My Trips.gif)
 
 Now get outside! 
 
