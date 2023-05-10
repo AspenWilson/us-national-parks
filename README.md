@@ -11,6 +11,7 @@ When planning a trip to a national park, it can be hard to remember all the hike
 - Filter all US National Parks by State
 - View all hikes or filter by trail length
 - Toggle between the most common and endangered animals found in your selected park 
+- Trip builder and navigation stay in place as you scroll
 - Save you trip to your trips list, where you can delete trips or mark them as complete and toggle between your saved and completed trips 
 
 ## Installation
